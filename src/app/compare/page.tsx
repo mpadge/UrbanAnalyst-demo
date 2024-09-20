@@ -21,7 +21,6 @@ export default function Home() {
         "home",
         "summarise",
         "map",
-        "transform",
         "about"
     ]
 

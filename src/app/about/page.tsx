@@ -23,7 +23,6 @@ export default function Home() {
         "summarise",
         "compare",
         "map",
-        "transform",
     ]
 
     return (
@@ -54,9 +53,7 @@ export default function Home() {
                     <ol>
                         <li>
                             a &ldquo;Summarise&rdquo; page that provides brief
-                            descriptions of the properties of any chosen city,
-                            and identifies the best potential city for
-                            transformation.
+                            descriptions of the properties of any chosen city.
                         </li>
                         <li>
                             a &ldquo;Compare&rdquo; view that compares the
@@ -67,10 +64,6 @@ export default function Home() {
                             a &ldquo;Map&rdquo; view, to enable various properties
                             of individual cities to be visualised as interactive
                             maps, and
-                        </li>
-                        <li>
-                            a &ldquo;Transform&rdquo; view that enables cities to be
-                            transformed to become like any other city.
                         </li>
                     </ol>
                 </div>

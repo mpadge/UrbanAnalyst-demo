@@ -24,7 +24,6 @@ export default function Home() {
         "home",
         "compare",
         "map",
-        "transform",
         "about"
     ]
 

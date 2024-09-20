@@ -7,7 +7,6 @@ import Link from 'next/link'
 import type { Metadata, Viewport } from 'next';
 import compareImage from '@/images/compare.png';
 import mapImage from '@/images/map.png';
-import transformImage from '@/images/transform.png';
 
 import styles from '@/styles/Home.module.css'
 import ButtonAppBar from '@/components/appBar';
@@ -39,7 +38,6 @@ export default function Home() {
         "summarise",
         "compare",
         "map",
-        "transform",
         "about"
     ]
 
@@ -124,31 +122,6 @@ export default function Home() {
                                     sizes="100vw"
                                     style={{
                                         objectFit: "contain"
-                                    }}
-                                />
-                            </div>
-                        </Link>
-                    </div>
-
-
-                    <div className={styles.card}>
-                        <Link href="/transform" rel="noopener noreferrer">
-                            <div className={styles.cardContent}>
-                                <h2>
-                                    Transform <span>&#8628;</span>
-                                </h2>
-                                <p className={styles.cardText}>
-                                    Transform any city to be like any other
-                                </p>
-                            </div>
-                            <div className={styles.cardImage}>
-                                <Image
-                                    src={transformImage}
-                                    alt="Image of UrbanAnalyst Transform page"
-                                    fill
-                                    sizes="100vw"
-                                    style={{
-                                        objectFit: "cover"
                                     }}
                                 />
                             </div>
