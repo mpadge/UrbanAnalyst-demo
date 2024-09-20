@@ -7,7 +7,7 @@ import styles from '@/styles/compare.module.css';
 import useWindowSize from '@/components/windowSize';
 
 import { CityDataProps } from "@/data/interfaces";
-import { getIdxWashington } from '@/components/headingText';
+import { getIdxMuenster } from '@/components/headingText';
 
 interface CompareProps {
     layer1: string,
@@ -50,8 +50,8 @@ interface AxisProps {
 
 export default function BarChart (props: CompareProps) {
 
-    const idxWashington = getIdxWashington(props.citiesArray);
-    const [cityData, setCityData] = useState(props.citiesArray[idxWashington]);
+    const idxMuenster = getIdxMuenster(props.citiesArray);
+    const [cityData, setCityData] = useState(props.citiesArray[idxMuenster]);
 
     const meanValIndex = props.meanVals ? 0 : 1;
 
@@ -65,7 +65,7 @@ export default function BarChart (props: CompareProps) {
 
     const layer1: string = props.layer1.replace("\_", "").replace("index", "");
     const layer2: string = props.layer2.replace("\_", "").replace("index", "");
-    const paired_keys = Object.keys(props.citiesArray[idxWashington].stats_paired);
+    const paired_keys = Object.keys(props.citiesArray[idxMuenster].stats_paired);
 
     const these_layers =
         paired_keys.includes(layer1 + "_" + layer2) ?

@@ -6,8 +6,8 @@ import { CityDataProps } from "@/data/interfaces";
  * US census variables, this needs to be a US city. This function returns the
  * index of Washingtone DC.
  */
-export function getIdxWashington(props: CityDataProps[]) {
-    return props.findIndex((item) => item.name === "washington");
+export function getIdxMuenster(props: CityDataProps[]) {
+    return props.findIndex((item) => item.name === "muenster");
 }
 
 
@@ -55,9 +55,9 @@ export function HeadingTextOneLayer (layer: string) {
 // lines.
 export function HeadingText (layer: string, layer2: string, numLayers: string, citiesArray: CityDataProps[]) {
 
-    const idxWashington = getIdxWashington (citiesArray);
+    const idxMuenster = getIdxMuenster (citiesArray);
 
-    const paired_keys = Object.keys(citiesArray[idxWashington].dataRangesPaired);
+    const paired_keys = Object.keys(citiesArray[idxMuenster].dataRangesPaired);
     const layer1: string = layer.replace("\_", "").replace("index", "");
     const layer2fmt: string = layer2.replace("\_", "").replace("index", "");
     const these_layers =
