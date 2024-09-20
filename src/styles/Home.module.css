@@ -1,0 +1,366 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6rem;
+    min-height: 100vh;
+}
+
+.textLink {
+    color: #3383ff;
+}
+
+.description {
+    display: relative;
+    justify-content: left;
+    align-items: left;
+    font-size: 16px;
+}
+
+.description p {
+    position: absolute;
+    top: 20px;
+    left: 10%;
+    margin-top: 20px;
+    padding: 1rem;
+    width: auto;
+    background-color: rgba(var(--callout-rgb), 0.5);
+    border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+    border-radius: var(--border-radius);
+}
+
+.code {
+    font-weight: 700;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(50%, auto));
+    width: var(--max-width);
+    gap: 1rem;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding:  1rem  1.2rem;
+    border-radius: var(--border-radius);
+    background: rgba(var(--card-rgb),  0);
+    border:  1px solid rgba(var(--card-border-rgb),  0);
+    transition: background  200ms, border  200ms;
+    overflow: hidden;
+}
+
+.cardContent {
+    flex:  1; /* Ensure text content takes up available space */
+}
+
+.cardImage {
+    position: relative;
+    width:  100%;
+    height:  0; /* Ensure image container takes up remaining space */
+    padding-top:  100%; /* Make height equal to width */
+}
+
+.card h2 {
+    font-weight: 600;
+    margin-bottom: 0.7rem;
+}
+
+.card p {
+    margin: 0;
+    opacity: 0.6;
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+.centerBig {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 1rem 0;
+    font-size: 4rem;
+    text-align: center;
+}
+
+.centerBig p {
+    margin-top: 50px;
+    margin-bottom: 1px;
+}
+
+.centerMed {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 1rem 0;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.centerMed p {
+    margin: 20px;
+}
+
+.centerNormal {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-align: center;
+}
+
+.centerNormal p {
+    margin: 20px;
+}
+
+.centerSmall {
+    margin-top: 0;
+    padding: 0.5rem 0;
+    font-size: 1.2rem;
+    font-weight: 300;
+    width: 80%;
+}
+
+.centerSmall p {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.centerSmall a {
+    color: rgb(30, 144, 255);
+}
+
+.centerSmall ol {
+    list-style-position: outside;
+    list-style-type: decimal;
+    width: 75%;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+
+.cardText {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-align: left;
+}
+
+.cardText p {
+    margin-bottom: 160px;
+}
+
+
+.logo,
+.thirteen {
+    position: relative;
+}
+
+.thirteen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 75px;
+    padding: 25px 10px;
+    margin-left: 16px;
+    transform: translateZ(0);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0px 2px 8px -1px #0000001a;
+}
+
+.thirteen::before,
+.thirteen::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+}
+
+/* Conic Gradient Animation */
+.thirteen::before {
+    animation: 6s rotate linear infinite;
+    width: 200%;
+    height: 200%;
+    background: var(--tile-border);
+}
+
+/* Inner Square */
+.thirteen::after {
+    inset: 0;
+    padding: 1px;
+    border-radius: var(--border-radius);
+    background: linear-gradient(
+    to bottom right,
+    rgba(var(--tile-start-rgb), 1),
+    rgba(var(--tile-end-rgb), 1)
+    );
+    background-clip: content-box;
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+    .card:hover {
+        background: rgba(var(--card-rgb), 0.1);
+        border: 1px solid rgba(var(--card-border-rgb), 0.15);
+    }
+
+    .card:hover span {
+        transform: translateX(4px);
+    }
+}
+
+@media (prefers-reduced-motion) {
+    .thirteen::before {
+        animation: none;
+    }
+
+    .card:hover span {
+        transform: none;
+    }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .main {
+        padding: 2rem;
+    }
+    .content {
+        padding: 2rem;
+    }
+    .description {
+        display: none;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        margin-bottom: 120px;
+        max-width: 320px;
+        text-align: center;
+    }
+
+    .card {
+        padding: 1rem 2.5rem;
+    }
+
+    .card h2 {
+        margin-bottom: 0.5rem;
+    }
+
+    .center {
+        padding: 8rem 0 6rem;
+    }
+
+    .center::before {
+        transform: none;
+        height: 300px;
+    }
+
+    .centerMed {
+        padding: 0.5rem 0;
+        font-size: 1.5rem;
+    }
+    .centerMed p {
+        margin: 0.5px;
+    }
+    .centerSmall {
+        width: 100%;
+    }
+    .centerSmall ol {
+        margin-left: 6%;
+    }
+
+    .description {
+        font-size: 0.8rem;
+    }
+
+    .description a {
+        padding: 1rem;
+    }
+
+    .description p,
+    .description div {
+        display: flex;
+        justify-content: center;
+    }
+
+    .description p {
+        align-items: center;
+        inset: 0 0 auto;
+        padding: 2rem 1rem 1.4rem;
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid rgba(var(--callout-border-rgb), 0.25);
+        background: linear-gradient(
+        to bottom,
+        rgba(var(--background-start-rgb), 1),
+        rgba(var(--callout-rgb), 0.5)
+        );
+        background-clip: padding-box;
+        backdrop-filter: blur(24px);
+    }
+
+    .description div {
+        align-items: flex-end;
+        pointer-events: none;
+        inset: auto 0 0;
+        padding: 2rem;
+        height: 200px;
+        background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgb(var(--background-end-rgb)) 40%
+        );
+        z-index: 1;
+    }
+
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(50%, auto));
+        width: auto;
+    }
+    .centerSmall {
+        width: 95%;
+    }
+    .centerSmall ol {
+        margin-left: 10%;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .vercelLogo {
+        filter: invert(1);
+    }
+
+    .logo,
+    .thirteen img {
+        filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}

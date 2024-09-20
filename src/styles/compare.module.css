@@ -1,0 +1,79 @@
+.comparepage {
+    display: inline;
+    align-items: center;
+    justify-content: center;
+}
+
+.compareplot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align: top;
+    align-items: center;
+    margin: 20px;
+    z-index: 10;
+    position: absolute;
+    height: 100%;
+    width: 80%;
+    top: 0%;
+    left: 10%;
+}
+
+.compareplot p {
+    margin: 0;
+    padding: 1rem;
+    background-color: rgba(var(--callout-rgb), 0.5);
+    border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+    border-radius: var(--border-radius);
+}
+
+.compareplot h2 {
+    position: fixed;
+    top: 4%;
+    font-weight: 400;
+    margin-bottom: 0.7rem;
+    margin: 0;
+    padding: 1rem;
+    background-color: rgba(var(--callout-rgb), 0.5);
+    border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+    border-radius: var(--border-radius);
+}
+
+.comparetext {
+    display: inherit;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    top: 15%;
+    left: 12dvw; /* control box is 10dvw wide */
+    z-index: 10;
+    height: 100%;
+    width: 70%;
+}
+
+.comparetext p {
+    padding: 1rem;
+    background-color: rgba(var(--explain-dialog-background-rgb), 0.95);
+    border: 1px solid rgba(var(--callout-border-rgb), 0.9);
+    border-radius: var(--border-radius);
+}
+
+.comparetext h2 {
+    font-weight: 600;
+    margin-bottom: 0.7rem;
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {
+    .comparetext {
+        left: 20dvw;
+    }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .comparetext {
+        top: 45%;
+        width: 70%;
+    }
+}

@@ -1,0 +1,137 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 6rem;
+    min-height: 100vh;
+}
+
+.textLink {
+    color: #3383ff;
+}
+
+.main ol {
+    margin-left: 50px;
+    text-align: left;
+    list-style-type: decimal;
+}
+
+.description {
+    display: relative;
+    justify-content: left;
+    align-items: left;
+    font-size: 16px;
+}
+
+.description p {
+    position: absolute;
+    top: 20px;
+    left: 10%;
+    margin-top: 20px;
+    padding: 1rem;
+    width: auto;
+    background-color: rgba(var(--callout-rgb), 0.5);
+    border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+    border-radius: var(--border-radius);
+}
+
+.centerBig {
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+    padding: 4rem 0;
+    font-size: 4rem;
+}
+
+.leftMed {
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+    padding: 4rem 0;
+    font-size: 3rem;
+    font-weight: 300;
+    padding: 1rem;
+}
+
+.leftMed p {
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.centerNormal {
+    margin-top: 0;
+    padding: 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 300;
+    width: 80%;
+}
+
+.centerNormal p {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.centerNormal a {
+    color: rgb(30, 144, 255);
+}
+
+.centerNormal ol {
+    list-style-position: outside;
+    list-style-type: decimal;
+    width: 75%;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .description {
+        display: none;
+    }
+
+    .center {
+        padding: 8rem 0 6rem;
+    }
+    .center::before {
+        transform: none;
+        height: 300px;
+    }
+    .centerNormal {
+        width: 100%;
+    }
+    .centerNormal ol {
+        margin-left: 6%;
+    }
+
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {
+    .centerNormal {
+        width: 95%;
+    }
+    .centerNormal ol {
+        margin-left: 10%;
+    }
+
+}
+
+@media (prefers-color-scheme: dark) {
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}

@@ -1,0 +1,38 @@
+.tourmask {
+    opacity: 0.6;
+    color: #303030;
+}
+
+.tourhelperLight {
+    --reactour-accent: #5cb7b7;
+    line-height: 1.3;
+    font-size: 18px;
+    opacity: 0.9;
+    color: #111111 !important;
+}
+
+/* Reactour text in dark mode automatically sets to white;
+ * this whole thing only exists to stop that */
+.tourhelperDark {
+    --reactour-accent: #5cb7b7;
+    line-height: 1.3;
+    font-size: 18px;
+    opacity: 0.9;
+    color: #111111 !important;
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {
+    .tourhelper {
+        line-height: 1.1;
+        font-size: 16px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .tourhelper {
+        line-height: 1.1;
+        font-size: 16px;
+    }
+}
