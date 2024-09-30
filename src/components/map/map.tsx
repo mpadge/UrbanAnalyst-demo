@@ -26,30 +26,48 @@ const MAP_STYLE = "mapbox://styles/mapbox/light-v10"
 export default function UTAMap (props: MapProps) {
 
     const this_layer = props.dataSource == "aggregate" ? mapLayer(props) : mapLayerDetailed(props);
-    const [layer, setLayer] = useState(this_layer);
+    const [thisMapLayer, setThisMapLayer] = useState(this_layer);
 
     useEffect(() => {
         const this_layer = props.dataSource == "aggregate" ? mapLayer(props) : mapLayerDetailed(props);
-        setLayer(this_layer);
+        setThisMapLayer(this_layer);
     }, [props]);
 
     const [mapData, setMapData] = useState(null);
+    const [initialSetMapData, setInitialSetMapData] = useState(true);
 
+    const { dataSource, idx, layer, citiesArray, handleLayerRangeChange } = props;
     useEffect(() => {
-        const mapPath = props.citiesArray[props.idx].path.replace("data\.json", "data-full.json");
 
-        fetch(mapPath)
-            .then(response => response.json())
-            .then(data => {
-                const filteredData = data.map(item => ({
-                    position: item.position,
-                    layer: item[layer]
-                }));
+        if (dataSource === "detailed") {
 
-                setMapData(filteredData);
-            })
-            .catch((error) => console.error('Error:', error));
-    }, [props.idx, props.layer])
+            const mapPath = citiesArray[idx].path.replace("data\.json", "data-full.json");
+
+            fetch(mapPath)
+                .then(response => response.json())
+                .then(data => {
+                    const filteredData = data.map((item: any) => ({
+                        position: item.position,
+                        layer: item[layer]
+                    }));
+
+                    if (filteredData) {
+
+                        setMapData(filteredData);
+
+                        if (initialSetMapData) {
+                            const layerMin = Math.min(...filteredData.map((d: any) => d.layer));
+                            const layerMax = Math.max(...filteredData.map((d: any) => d.layer));
+                            const layerRange = [layerMin, layerMax];
+                            handleLayerRangeChange(layerRange);
+                            setInitialSetMapData(false);
+                        }
+                    }
+                })
+                .catch((error) => console.error('Error:', error));
+        }
+    }, [dataSource, idx, layer, citiesArray, handleLayerRangeChange,
+            setMapData, initialSetMapData, setInitialSetMapData])
 
     const [viewState, setViewState] = useState({
         ...props.viewState,
@@ -67,7 +85,7 @@ export default function UTAMap (props: MapProps) {
                         width={"100vw"}
                         height={"100vh"}
                         controller={true}
-                        layers={layer}
+                        layers={thisMapLayer}
                         initialViewState={props.viewState}
                     >
                         <Map
