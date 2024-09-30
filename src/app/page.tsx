@@ -5,7 +5,6 @@
 import Image from "next/image"
 import Link from 'next/link'
 import type { Metadata, Viewport } from 'next';
-import compareImage from '@/images/compare.png';
 import mapImage from '@/images/map.png';
 
 import styles from '@/styles/Home.module.css'
@@ -36,7 +35,6 @@ export default function Home() {
 
     const buttonTxt = [
         "summarise",
-        "compare",
         "map",
         "about"
     ]
@@ -75,31 +73,6 @@ export default function Home() {
                                     which that city could best improve to become
                                     more like the target city.
                                 </p>
-                            </div>
-                        </Link>
-                    </div>
-
-                    <div className={styles.card}>
-                        <Link href="/compare" rel="noopener noreferrer">
-                            <div className={styles.cardContent}>
-                                <h2>
-                                    Compare <span>&#8628;</span>
-                                </h2>
-                                <p className={styles.cardText}>
-                                    Compare statistics for every UA city.
-                                </p>
-                            </div>
-                            <div className={styles.cardImage}>
-                                <Image
-                                    src={compareImage}
-                                    alt="Image of UrbanAnalyst Compare page"
-                                    priority
-                                    fill
-                                    sizes="100vw"
-                                    style={{
-                                        objectFit: "contain"
-                                    }}
-                                />
                             </div>
                         </Link>
                     </div>
