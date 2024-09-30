@@ -8,12 +8,17 @@ rownames (dat) <- NULL
 index <- grep ("\\_d05", names (dat))
 dat <- dat [, -(index)]
 
-# Convert to sf:
+# Convert xy to "position" list:
 index <- match (c ("x", "y"), names (dat))
 xy <- as.matrix (dat [, index])
 dat <- dat [, -index]
-g <- sf::st_sfc (apply (xy, 1, sf::st_point, simplify = FALSE), crs = 4326)
-dat <- sf::st_sf (dat, geometry = g)
+xy <- apply (xy, 1, function (i) {
+    list (unname (i))
+})
+dat$position <- I(lapply (xy, unlist))
+
+# g <- sf::st_sfc (apply (xy, 1, sf::st_point, simplify = FALSE), crs = 4326)
+# dat <- sf::st_sf (dat, geometry = g)
 
 # Rename vars, and add extra transport column, as in uaengine calcs for
 # compound transport variable:
@@ -22,8 +27,10 @@ dat <- dplyr::mutate (
     dat,
     transport = times_abs * log10 (intervals),
     .after = "intervals"
-)
+) |>
+    dplyr::filter (!is.na (transport))
 
 this_dir <- fs::dir_ls (".", type = "directory")
 f_out <- fs::path (this_dir, "data-full.json")
-geojsonio::geojson_write (dat, file = f_out)
+# geojsonio::geojson_write (dat, file = f_out)
+jsonlite::write_json (dat, f_out)
