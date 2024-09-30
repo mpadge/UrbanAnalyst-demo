@@ -5,6 +5,7 @@ import { FlyToInterpolator } from "@deck.gl/core/typed";
 import { Map } from "react-map-gl";
 
 import mapLayer from '@/components/map/mapLayer'
+import mapLayerDetailed from '@/components/map/mapLayerDetailed'
 
 import { ViewState, CityDataProps } from "@/data/interfaces";
 import { MapProps } from "@/components/map/mapPage";
@@ -24,11 +25,12 @@ const MAP_STYLE = "mapbox://styles/mapbox/light-v10"
  */
 export default function UTAMap (props: MapProps) {
 
-    const this_layer = mapLayer(props);
+    const this_layer = props.dataSource == "aggregate" ? mapLayer(props) : mapLayerDetailed(props);
     const [layer, setLayer] = useState(this_layer);
+
     useEffect(() => {
-        const this_layer = mapLayer(props);
-        setLayer(mapLayer(props));
+        const this_layer = props.dataSource == "aggregate" ? mapLayer(props) : mapLayerDetailed(props);
+        setLayer(this_layer);
     }, [props]);
 
     const [viewState, setViewState] = useState({
