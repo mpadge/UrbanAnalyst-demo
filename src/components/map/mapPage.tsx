@@ -35,6 +35,7 @@ import { CityDataProps, DataRangeKeys, Data2RangeKeys, ViewState } from '@/data/
  */
 export interface MapProps {
     idx: number,
+    dataSource: string,
     layer: string,
     layer2: string,
     numLayers: string,
@@ -45,6 +46,7 @@ export interface MapProps {
     citiesArray: CityDataProps[],
     handleAlphaChange: (pAlpha: number) => void,
     handleViewStateChange: (pViewState: ViewState) => void,
+    handleDataSourceChange: (dataSource: string) => void,
     handleLayerChange: (layer: string) => void
     handleLayer2Change: (layer2: string) => void
     handleLayerRangeChange: (layerRange: number[]) => void,
@@ -62,6 +64,7 @@ export interface MapProps {
 export default function MapPage() {
 
     const [idx, setIdx] = useState(0);
+    const [dataSource, setDataSource] = useState("aggregate");
 
     const [cityData, setCityData] = useState(CITY_DATA.citiesArray[idx]);
     const [viewState, setViewState] = useState({
@@ -166,6 +169,12 @@ export default function MapPage() {
         setViewState((prevViewState) => { return { ...prevViewState, ...pViewState }; });
         //setViewState(pViewState);
     }
+    const handleDataSourceChange = (dataSource: string) => {
+        setDataSource(dataSource);
+        if (typeof window != "undefined") {
+            localStorage.setItem("uaDataSource", dataSource);
+        }
+    }
     const handleLayerChange = (layer: string) => {
         setLayer(layer);
         if (typeof window != "undefined") {
@@ -233,6 +242,7 @@ export default function MapPage() {
         <>
             <UTAMap
                 idx = {idx}
+                dataSource = {dataSource}
                 layer = {layer}
                 layer2 = {layer2}
                 numLayers = {numLayers}
@@ -243,12 +253,14 @@ export default function MapPage() {
                 viewState = {viewState}
                 handleAlphaChange = {handleAlphaChange}
                 handleViewStateChange = {handleViewStateChange}
+                handleDataSourceChange = {handleDataSourceChange}
                 handleLayerChange = {handleLayerChange}
                 handleLayer2Change = {handleLayer2Change}
                 handleLayerRangeChange = {handleLayerRangeChange}
             />
             <Control
                 idx = {idx}
+                dataSource = {dataSource}
                 layer = {layer}
                 layer2 = {layer2}
                 numLayers = {numLayers}
@@ -262,6 +274,7 @@ export default function MapPage() {
                 handleNumLayersChange = {handleNumLayersChange}
                 handleAlphaChange = {handleAlphaChange}
                 handleViewStateChange = {handleViewStateChange}
+                handleDataSourceChange = {handleDataSourceChange}
                 handleLayerChange = {handleLayerChange}
                 handleLayer2Change = {handleLayer2Change}
                 handleLayerRangeChange = {handleLayerRangeChange}

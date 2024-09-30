@@ -12,6 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
 import styles from '@/styles/controls.module.css';
+import DataSourceButtons from '@/components/map/dataSource';
 import LayerList from '@/components/map/layerList';
 import LayerList2 from '@/components/map/layerList2';
 import SelectNumLayers from '@/components/map/numLayers';
@@ -26,6 +27,7 @@ const junctionFont = localFont({ src: '../../app/junction-regular.woff' })
 
 interface MapControlProps {
     idx: number,
+    dataSource: string,
     layer: string,
     layer2: string,
     numLayers: string,
@@ -39,6 +41,7 @@ interface MapControlProps {
     handleNumLayersChange: (numLayers: string) => void,
     handleAlphaChange: (pAlpha: number) => void,
     handleViewStateChange: (pViewState: ViewState) => void,
+    handleDataSourceChange: (dataSource: string) => void,
     handleLayerChange: (layer: string) => void,
     handleLayer2Change: (layer: string) => void,
     handleLayerRangeChange: (layerRange: number[]) => void,
@@ -126,6 +129,15 @@ export default function Control (props: MapControlProps) {
                     </Tooltip>
 
                     <RootSpacing>
+                        <Divider sx={{ color: 'black' }} flexItem >Data Source</Divider>
+                        <Box sx={{ p: 1 }}>
+                            <Stack spacing={1} marginBottom="8px">
+                                <DataSourceButtons
+                                    dataSource = {props.dataSource}
+                                    handleDataSourceChange = {props.handleDataSourceChange}
+                                />
+                            </Stack>
+                        </Box>
                         <Divider sx={{ color: 'black' }} flexItem >Layer Controls</Divider>
                         <Box sx={{ p: 1 }}>
                             <Stack spacing={1} alignItems="center" marginBottom="8px">
