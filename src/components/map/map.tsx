@@ -5,6 +5,7 @@ import { FlyToInterpolator } from "@deck.gl/core/typed";
 import { Map } from "react-map-gl";
 
 import mapLayer from '@/components/map/mapLayer'
+import mapLayerTransport from '@/components/map/mapLayerTransport'
 import mapLayerDetailed from '@/components/map/mapLayerDetailed'
 
 import { ViewState, CityDataProps } from "@/data/interfaces";
@@ -29,7 +30,9 @@ export default function UTAMap (props: MapProps) {
     const [thisMapLayer, setThisMapLayer] = useState(this_layer);
 
     useEffect(() => {
-        const this_layer = props.dataSource == "aggregate" ? mapLayer(props) : mapLayerDetailed(props);
+        const this_layer = props.dataSource == "aggregate" ? mapLayer(props) : 
+                (props.dataSource == "transport" ?
+                    mapLayerTransport(props) : mapLayerDetailed(props));
         setThisMapLayer(this_layer);
     }, [props]);
 
@@ -39,9 +42,10 @@ export default function UTAMap (props: MapProps) {
     const { dataSource, idx, layer, citiesArray, handleLayerRangeChange } = props;
     useEffect(() => {
 
-        if (dataSource === "detailed") {
+        if (dataSource === "transport" || dataSource == "detailed") {
 
-            const mapPath = citiesArray[idx].path.replace("data\.json", "data-full.json");
+            const filename = dataSource === "transport" ? "data-points.json" : "data-full.json";
+            const mapPath = citiesArray[idx].path.replace("data\.json", filename);
 
             fetch(mapPath)
                 .then(response => response.json())

@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import { useState, Suspense } from "react";
-import { LineLayer } from "@deck.gl/layers/typed";
+import { ScatterplotLayer } from "@deck.gl/layers/typed";
 import { FlyToInterpolator } from "@deck.gl/core/typed";
 import * as d3 from 'd3';
 import 'd3-scale-chromatic';
@@ -9,9 +9,9 @@ import { ViewState, CityDataProps } from "@/data/interfaces";
 
 import { MapProps } from "@/components/map/mapPage";
 
-export default function MapLayerDetails (props: MapProps) {
+export default function MapLayerTransport (props: MapProps) {
 
-    const mapPath = props.citiesArray[props.idx].path.replace("data\.json", "data-full.json");
+    const mapPath = props.citiesArray[props.idx].path.replace("data\.json", "data-points.json");
 
     const this_layer: string = props.layer;
 
@@ -19,14 +19,14 @@ export default function MapLayerDetails (props: MapProps) {
         .interpolator(d3.interpolateViridis)
 
     const layers = [
-        new LineLayer({
-            id: 'line-layer',
+        new ScatterplotLayer({
+            id: 'points-layer',
             data: mapPath,
             stroked: true,
-            getSourcePosition: (d: any) => d.from,
-            getTargetPosition: (d: any) => d.to,
-            getLineWidth: 10,
-            getColor: d => {
+            getPosition: (d: any) => d.position,
+            getRadius: 50, // implicit 'radiusScale: 1'
+            getLineWidth: 0,
+            getFillColor: d => {
                 var layerval = Math.max (props.layerRange[0], Math.min (props.layerRange[1], d[this_layer]));
                 const layerIsNaN = isNaN(layerval)
                 if (layerIsNaN) {
