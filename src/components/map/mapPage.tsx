@@ -82,19 +82,11 @@ export default function MapPage() {
     const [layerRange, setLayerRange] = useState<number[]>([0, 1]);
 
     useEffect(() => {
-        var idxLocal = 0;
         var layerLocal = "social_index";
         var layer2Local = "";
         var numLayersLocal = "Single";
         var alphaLocal = 0.5;
         if (typeof window != "undefined") {
-            const storedIdx = localStorage.getItem('uaCityIdx');
-            if(storedIdx) { // convert to int
-                idxLocal = parseInt(storedIdx, 10);
-                if (isNaN(idxLocal)) {
-                    idxLocal = 0;
-                }
-            }
             const storedLayer = localStorage.getItem('uaLayer');
             if(storedLayer) {
                 layerLocal = storedLayer;
@@ -115,21 +107,12 @@ export default function MapPage() {
                 }
             }
         }
-        setIdx(idxLocal);
-        setCityData(CITY_DATA.citiesArray[idxLocal]);
-        setViewState({
-            ...CITY_DATA.citiesArray[idxLocal].initialViewState,
-            pitch: 0,
-            bearing: 0,
-            transitionDuration: 2000,
-            transitionInterpolator: new FlyToInterpolator()
-        })
         setLayer(layerLocal);
         setLayer2(layer2Local);
         setNumLayers(numLayersLocal);
         setAlpha(alphaLocal);
 
-        const theseLayers = Object.keys(CITY_DATA.citiesArray[idxLocal].dataRanges);
+        const theseLayers = Object.keys(CITY_DATA.citiesArray[idx].dataRanges);
         setCityLayers(theseLayers);
         if (!theseLayers.includes(layerLocal)) {
             layerLocal = "social_index";
@@ -173,29 +156,6 @@ export default function MapPage() {
         setLayerStartStop([layer_start, layer_stop]);
     }, [idx, layer, layer2, numLayers])
 
-    const handleIdxChange = (idx: number) => {
-        setIdx(idx);
-        setCityData(CITY_DATA.citiesArray[idx]);
-        setViewState({
-            ...CITY_DATA.citiesArray[idx].initialViewState,
-            pitch: 0,
-            bearing: 0,
-            transitionDuration: 2000,
-            transitionInterpolator: new FlyToInterpolator()
-        })
-        if (typeof window != "undefined") {
-            localStorage.setItem("uaCityIdx", idx.toString());
-        }
-        const theseLayers = Object.keys(CITY_DATA.citiesArray[idx].dataRanges);
-        if (!theseLayers.includes(layer)) {
-            setLayer("social_index");
-            localStorage.removeItem('uaLayer');
-        }
-        if (!theseLayers.includes(layer2)) {
-            setLayer2("social_index");
-            localStorage.removeItem('uaLayer2');
-        }
-    }
     const handleAlphaChange = (alpha: number) => {
         setAlpha(alpha);
         if (typeof window != "undefined") {
@@ -299,7 +259,6 @@ export default function MapPage() {
                 citiesArray = {CITY_DATA.citiesArray}
                 cityLayers = {cityLayers}
                 viewState = {viewState}
-                handleIdxChange = {handleIdxChange}
                 handleNumLayersChange = {handleNumLayersChange}
                 handleAlphaChange = {handleAlphaChange}
                 handleViewStateChange = {handleViewStateChange}

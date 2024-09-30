@@ -12,7 +12,6 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
 import styles from '@/styles/controls.module.css';
-import CityList from '@/components/map/cityList';
 import LayerList from '@/components/map/layerList';
 import LayerList2 from '@/components/map/layerList2';
 import SelectNumLayers from '@/components/map/numLayers';
@@ -37,7 +36,6 @@ interface MapControlProps {
     citiesArray: CityDataProps[],
     cityLayers: string[],
     viewState: ViewState,
-    handleIdxChange: (pIdx: number) => void,
     handleNumLayersChange: (numLayers: string) => void,
     handleAlphaChange: (pAlpha: number) => void,
     handleViewStateChange: (pViewState: ViewState) => void,
@@ -126,15 +124,6 @@ export default function Control (props: MapControlProps) {
                         />
                     </button>
                     </Tooltip>
-
-                    <CityList
-                        citiesArray={props.citiesArray}
-                        idx={props.idx}
-                        viewState = {props.viewState}
-                        handleIdxChange={props.handleIdxChange}
-                        handleViewStateChange={props.handleViewStateChange}
-                        // onSelect={city => props.handleIdxChange(props.idx)}
-                    />
 
                     <RootSpacing>
                         <Divider sx={{ color: 'black' }} flexItem >Layer Controls</Divider>
