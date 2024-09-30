@@ -16,7 +16,9 @@ export default function DataSourceButtons(props: dataSourceProps) {
 
     const [data, setData] = useState(props.dataSource);
     useEffect(() => {
-        setData(props.dataSource);
+        if (props.dataSource) {
+            setData(props.dataSource);
+        }
     }, [props.dataSource]);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +27,9 @@ export default function DataSourceButtons(props: dataSourceProps) {
 
     const { handleDataSourceChange } = props;
     useEffect(() => {
-        handleDataSourceChange(data);
+        if (data) {
+            handleDataSourceChange(data);
+        }
     }, [data, handleDataSourceChange]);
 
     return (
@@ -34,7 +38,7 @@ export default function DataSourceButtons(props: dataSourceProps) {
                 <RadioGroup
                     row
                     aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="aggregate"
+                    value={data}
                     name="radio-buttons-group"
                     onChange={handleChange}
                 >

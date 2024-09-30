@@ -64,7 +64,7 @@ export interface MapProps {
 export default function MapPage() {
 
     const [idx, setIdx] = useState(0);
-    const [dataSource, setDataSource] = useState("aggregate");
+    const [dataSource, setDataSource] = useState(null);
 
     const [cityData, setCityData] = useState(CITY_DATA.citiesArray[idx]);
     const [viewState, setViewState] = useState({
@@ -89,6 +89,7 @@ export default function MapPage() {
         var layer2Local = "";
         var numLayersLocal = "Single";
         var alphaLocal = 0.5;
+        var dataSourceLocal = "aggregate";
         if (typeof window != "undefined") {
             const storedLayer = localStorage.getItem('uaLayer');
             if(storedLayer) {
@@ -109,11 +110,17 @@ export default function MapPage() {
                     alphaLocal = 0.5;
                 }
             }
+
+            const storedDataSource = localStorage.getItem('uaDataSource');
+            if (storedDataSource) {
+                dataSourceLocal = storedDataSource;
+            }
         }
         setLayer(layerLocal);
         setLayer2(layer2Local);
         setNumLayers(numLayersLocal);
         setAlpha(alphaLocal);
+        setDataSource(dataSourceLocal);
 
         const theseLayers = Object.keys(CITY_DATA.citiesArray[idx].dataRanges);
         setCityLayers(theseLayers);
@@ -157,7 +164,7 @@ export default function MapPage() {
 
         setLayerRange([layer_min, layer_max]);
         setLayerStartStop([layer_start, layer_stop]);
-    }, [idx, layer, layer2, numLayers])
+    }, [idx, layer, layer2, numLayers, dataSource])
 
     const handleAlphaChange = (alpha: number) => {
         setAlpha(alpha);
@@ -169,12 +176,16 @@ export default function MapPage() {
         setViewState((prevViewState) => { return { ...prevViewState, ...pViewState }; });
         //setViewState(pViewState);
     }
+
     const handleDataSourceChange = (dataSource: string) => {
-        setDataSource(dataSource);
-        if (typeof window != "undefined") {
-            localStorage.setItem("uaDataSource", dataSource);
+        if (dataSource) {
+            setDataSource(dataSource);
+            if (typeof window != "undefined") {
+                localStorage.setItem("uaDataSource", dataSource);
+            }
         }
     }
+
     const handleLayerChange = (layer: string) => {
         setLayer(layer);
         if (typeof window != "undefined") {
