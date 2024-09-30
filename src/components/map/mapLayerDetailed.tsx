@@ -18,15 +18,13 @@ export default function MapLayer (props: MapProps) {
     var Color = d3.scaleSequential().domain(props.layerRange)
         .interpolator(d3.interpolateViridis)
 
-    console.log("----MAP DETAILED LAYER----" + mapPath);
-
     const layers = [
         new ScatterplotLayer({
             id: 'points-layer',
             data: mapPath,
             stroked: true,
             getPosition: (d: any) => d.position,
-            radiusScale: 36,
+            getRadius: 50, // implicit 'radiusScale: 1'
             getLineWidth: 0,
             getFillColor: d => {
                 var layerval = Math.max (props.layerRange[0], Math.min (props.layerRange[1], d[this_layer]));
