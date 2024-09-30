@@ -25,7 +25,7 @@ export default function MapLayerDetails (props: MapProps) {
             stroked: true,
             getSourcePosition: (d: any) => d.from,
             getTargetPosition: (d: any) => d.to,
-            getLineWidth: 10,
+            getWidth: 2,
             getColor: d => {
                 var layerval = Math.max (props.layerRange[0], Math.min (props.layerRange[1], d[this_layer]));
                 const layerIsNaN = isNaN(layerval)
