@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { useEffect, useState, Suspense } from "react";
+import { useMemo, useEffect, useState, Suspense } from "react";
 import { DeckGL } from "@deck.gl/react/typed";
 import { FlyToInterpolator } from "@deck.gl/core/typed";
 import { Map } from "react-map-gl";
@@ -32,6 +32,24 @@ export default function UTAMap (props: MapProps) {
         const this_layer = props.dataSource == "aggregate" ? mapLayer(props) : mapLayerDetailed(props);
         setLayer(this_layer);
     }, [props]);
+
+    const [mapData, setMapData] = useState(null);
+
+    useEffect(() => {
+        const mapPath = props.citiesArray[props.idx].path.replace("data\.json", "data-full.json");
+
+        fetch(mapPath)
+            .then(response => response.json())
+            .then(data => {
+                const filteredData = data.map(item => ({
+                    position: item.position,
+                    layer: item[layer]
+                }));
+
+                setMapData(filteredData);
+            })
+            .catch((error) => console.error('Error:', error));
+    }, [props.idx, props.layer])
 
     const [viewState, setViewState] = useState({
         ...props.viewState,
