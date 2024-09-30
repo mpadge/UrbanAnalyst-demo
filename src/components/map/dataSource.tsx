@@ -14,16 +14,19 @@ interface dataSourceProps {
 
 export default function DataSourceButtons(props: dataSourceProps) {
 
-    const [data, setData] = useState("aggregate");
+    const [data, setData] = useState(props.dataSource);
     useEffect(() => {
-        const dataState = props.dataSource
-        setData(dataState);
+        setData(props.dataSource);
     }, [props.dataSource]);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setData((event.target as HTMLInputElement).value);
-        props.handleDataSourceChange(data);
     }
+
+    const { handleDataSourceChange } = props;
+    useEffect(() => {
+        handleDataSourceChange(data);
+    }, [data, handleDataSourceChange]);
 
     return (
         <>
