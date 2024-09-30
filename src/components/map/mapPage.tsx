@@ -64,7 +64,7 @@ export interface MapProps {
 export default function MapPage() {
 
     const [idx, setIdx] = useState(0);
-    const [dataSource, setDataSource] = useState(null);
+    const [dataSource, setDataSource] = useState("");
 
     const [cityData, setCityData] = useState(CITY_DATA.citiesArray[idx]);
     const [viewState, setViewState] = useState({
@@ -178,7 +178,7 @@ export default function MapPage() {
     }
 
     const handleDataSourceChange = (dataSource: string) => {
-        if (dataSource) {
+        if (dataSource !== "") {
             setDataSource(dataSource);
             if (typeof window != "undefined") {
                 localStorage.setItem("uaDataSource", dataSource);
