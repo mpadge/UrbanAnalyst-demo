@@ -11,6 +11,8 @@ import { MapProps } from "@/components/map/mapPage";
 
 export default function MapLayerTransport (props: MapProps) {
 
+    if (props.data === null) return [];
+
     const this_layer: string = props.layer;
 
     var Color = d3.scaleSequential().domain(props.layerRange)

@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { useState, Suspense } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { GeoJsonLayer } from "@deck.gl/layers/typed";
 import { FlyToInterpolator } from "@deck.gl/core/typed";
 import * as d3 from 'd3';
@@ -11,6 +11,7 @@ import { MapProps } from "@/components/map/mapPage";
 
 export default function MapLayer (props: MapProps) {
 
+    if (props.data === null) return [];
 
     // This code also repeated in mapPage.tsx to calculate [layerMin, layerMax] props.
     const layer1: string = props.layer.replace("\_", "").replace("index", "");

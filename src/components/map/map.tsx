@@ -31,12 +31,14 @@ export default function UTAMap (props: MapProps) {
     const [thisPointsLayer, setThisPointsLayer] = useState(mapLayerTransport(props));;
 
     useEffect(() => {
-        if (props.dataSource == "aggregate") {
-            setThisGeoJsonLayer(mapLayer(props));
-        } else if (props.dataSource == "detailed") {
-            setThisLineLayer(mapLayerDetailed(props));
-        } else if (props.dataSource == "transport") {
-            setThisPointsLayer(mapLayerTransport(props));
+        if (props.data) {
+            if (props.dataSource == "aggregate") {
+                setThisGeoJsonLayer(mapLayer(props));
+            } else if (props.dataSource == "detailed") {
+                setThisLineLayer(mapLayerDetailed(props));
+            } else if (props.dataSource == "transport") {
+                setThisPointsLayer(mapLayerTransport(props));
+            }
         }
     }, [props]);
 

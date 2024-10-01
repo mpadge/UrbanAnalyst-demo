@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { GeoJsonLayer } from "@deck.gl/layers/typed";
 import { DeckGL } from "@deck.gl/react/typed";
 import { FlyToInterpolator } from "@deck.gl/core/typed";
 import { Map } from "react-map-gl";
@@ -39,7 +38,7 @@ import { CityDataProps, DataRangeKeys, Data2RangeKeys, ViewState } from '@/data/
 export interface MapProps {
     idx: number,
     dataSource: string,
-    data?: number | null,
+    data?: any,
     layer: string,
     layer2: string,
     numLayers: string,
