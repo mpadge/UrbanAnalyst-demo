@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { DeckGL } from "@deck.gl/react/typed";
 import { FlyToInterpolator } from "@deck.gl/core/typed";
 import { Map } from "react-map-gl";
@@ -47,6 +47,7 @@ export interface MapProps {
     layerStartStop: number[],
     viewState: ViewState,
     citiesArray: CityDataProps[],
+    isDataLoadingComplete: boolean,
     handleAlphaChange: (pAlpha: number) => void,
     handleViewStateChange: (pViewState: ViewState) => void,
     handleDataSourceChange: (dataSource: string) => void,
@@ -171,18 +172,22 @@ export default function MapPage() {
         setLayerStartStop([layer_start, layer_stop]);
     }, [idx, layer, layer2, numLayers, dataSource])
 
+    const [dataLoadingComplete, setDataLoadingComplete] = useState<boolean>(false);
     useEffect(() => {
         const sources = ["aggregate", "transport", "detailed"];
         if (sources.indexOf(dataSource) !== -1) {
+            setLoadedData(null);
+            setDataLoadingComplete(false);
             loadDataFunction(dataSource, setLoadedData);
         }
-    }, [dataSource, setLoadedData]);
+    }, [dataSource, setLoadedData, setDataLoadingComplete]);
 
     useEffect(() => {
         if (mapData) {
-            console.log("-----MAP DATA: ", mapData);
+            setDataLoadingComplete(true);
+            console.log("-----SETTING DATA LOADING COMPLETE TO 'true'-----");
         }
-    }, [mapData]);
+    }, [mapData, setDataLoadingComplete]);
 
     const handleAlphaChange = (alpha: number) => {
         setAlpha(alpha);
@@ -281,6 +286,7 @@ export default function MapPage() {
                 layerStartStop = {layerStartStop}
                 citiesArray = {CITY_DATA.citiesArray}
                 viewState = {viewState}
+                isDataLoadingComplete = {dataLoadingComplete}
                 handleAlphaChange = {handleAlphaChange}
                 handleViewStateChange = {handleViewStateChange}
                 handleDataSourceChange = {handleDataSourceChange}

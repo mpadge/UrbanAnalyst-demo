@@ -1,6 +1,7 @@
 import { NextPage } from "next";
-import { useMemo, useEffect, useState, Suspense } from "react";
+import { useMemo, useEffect, useRef, useState, Suspense } from "react";
 import { DeckGL } from "@deck.gl/react/typed";
+import { TextLayer } from "@deck.gl/layers/typed";
 import { FlyToInterpolator } from "@deck.gl/core/typed";
 import { Map } from "react-map-gl";
 
@@ -16,6 +17,11 @@ const MapboxAccessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
 // const MAP_STYLE = 'https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json';
 const MAP_STYLE = "mapbox://styles/mapbox/light-v10"
 
+const TEXT_DATA: any = [{
+    text: 'Loading ...',
+    position: [7.633, 51.964]
+}]
+
 /**
  * Map function to load DeckGL overlap and base map.
  *
@@ -26,11 +32,30 @@ const MAP_STYLE = "mapbox://styles/mapbox/light-v10"
  */
 export default function UTAMap (props: MapProps) {
 
-    const [thisGeoJsonLayer, setThisGeoJsonLayer] = useState(mapLayer(props));;
-    const [thisLineLayer, setThisLineLayer] = useState(mapLayerDetailed(props));;
-    const [thisPointsLayer, setThisPointsLayer] = useState(mapLayerTransport(props));;
+    const textLayer = useMemo(() => [
+
+        new TextLayer({
+            id: 'text-layer',
+            data: TEXT_DATA,
+            getPosition: (d: any) => d.position,
+            getText: (d: any) => d.text,
+            getAlignmentBaseline: 'center',
+            getColor: [255, 128, 0],
+            getFillColor: [255, 128, 0],
+            getSize: 48,
+            getTextAnchor: 'middle',
+            pickable: true
+        })
+    ], []);
+
+    const [thisGeoJsonLayer, setThisGeoJsonLayer] = useState(mapLayer(props));
+    const [thisLineLayer, setThisLineLayer] = useState(mapLayerDetailed(props));
+    const [thisPointsLayer, setThisPointsLayer] = useState(mapLayerTransport(props));
+
+    const [thisLayer, setThisLayer] = useState<any>(textLayer);
 
     useEffect(() => {
+        setThisLayer(textLayer);
         if (props.data) {
             if (props.dataSource == "aggregate") {
                 setThisGeoJsonLayer(mapLayer(props));
@@ -40,9 +65,8 @@ export default function UTAMap (props: MapProps) {
                 setThisPointsLayer(mapLayerTransport(props));
             }
         }
-    }, [props]);
+    }, [props, textLayer]);
 
-    const [thisLayer, setThisLayer] = useState<any>(thisGeoJsonLayer);
     useEffect(() => {
         if (props.dataSource == "aggregate") {
             setThisLayer(thisGeoJsonLayer);
@@ -50,9 +74,10 @@ export default function UTAMap (props: MapProps) {
             setThisLayer(thisLineLayer);
         } else if (props.dataSource == "transport") {
             setThisLayer(thisPointsLayer);
+        } else {
+            setThisLayer(textLayer);
         }
-    }, [props.dataSource, thisGeoJsonLayer, thisLineLayer, thisPointsLayer, setThisLayer]);
-
+    }, [props.dataSource, thisGeoJsonLayer, thisLineLayer, thisPointsLayer, textLayer, setThisLayer]);
 
     const [mapData, setMapData] = useState(null);
     const [initialSetMapData, setInitialSetMapData] = useState(true);
@@ -98,10 +123,10 @@ export default function UTAMap (props: MapProps) {
     });
 
     useEffect(() => {
-        console.log("----DATA LOADING COMPLETE = ", props.isDataLoadingComplete);
+        console.log("-----DATA LOADING: ", props.isDataLoadingComplete);
     }, [props.isDataLoadingComplete]);
 
-
+    console.log("-----LAYER: ", thisLayer);
 
     return (
         <>
