@@ -4,7 +4,9 @@ export async function GET(request: NextRequest): Promise<Response> {
     const { searchParams } = new URL(request.url)
     const type = searchParams.get('type');
 
-    const f_name = type === "points" ? "data-points.json" : "data-full.json";
+    const f_name = type === "aggregate" ? "data.json" :
+        (type == "transport" ? "data-points.json" :
+            "data-full.json");
     const url = `https://github.com/mpadge/UrbanAnalyst-demo/releases/download/v0.0.1/${f_name}`;
     const response = await fetch(url, {
         method: 'GET',
