@@ -10,6 +10,7 @@ import Control from '@/components/map/control';
 import Legend from '@/components/map/legend';
 import UTAMap from '@/components/map/map';
 import Tour from '@/components/map/tour/tour';
+import { loadDataFunction, JSONArray } from '@/components/map/loadData';
 import useWindowSize from '@/components/windowSize';
 import { getTourConfig } from '@/components/map/tour/tourConfig';
 import tourStyles from '@/styles/tour.module.css';
@@ -23,6 +24,8 @@ import { CityDataProps, DataRangeKeys, Data2RangeKeys, ViewState } from '@/data/
  * here and passed through to {@link map}. Individual props are:
  *
  * - `idx`: The integer defining the city from the full `CITY_DATA.citiesArray`.
+ * - `dataSource`: Path to local JSON data source.
+ * - `data`: Loaded JSON data from GitHub LFS.
  * - `layer`: The string defining the single layer to be diplayed.
  * - `layer2`: The string defining the optional paired layer to be used to
  *    display pairwise relationship.
@@ -36,6 +39,7 @@ import { CityDataProps, DataRangeKeys, Data2RangeKeys, ViewState } from '@/data/
 export interface MapProps {
     idx: number,
     dataSource: string,
+    data?: JSONArray,
     layer: string,
     layer2: string,
     numLayers: string,
@@ -83,6 +87,8 @@ export default function MapPage() {
 
     const [layerStartStop, setLayerStartStop] = useState<number[]>([0, 1]);
     const [layerRange, setLayerRange] = useState<number[]>([0, 1]);
+
+    const [mapData, setLoadedData] = useState<null | JSONArray>(null);
 
     useEffect(() => {
         var layerLocal = "social_index";
@@ -165,6 +171,15 @@ export default function MapPage() {
         setLayerRange([layer_min, layer_max]);
         setLayerStartStop([layer_start, layer_stop]);
     }, [idx, layer, layer2, numLayers, dataSource])
+
+    useEffect(() => {
+        loadDataFunction(dataSource, setLoadedData);
+    }, [dataSource, setLoadedData]);
+
+    useEffect(() => {
+        if (mapData) {
+        }
+    }, [mapData]);
 
     const handleAlphaChange = (alpha: number) => {
         setAlpha(alpha);
