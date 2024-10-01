@@ -27,11 +27,7 @@ export default function MapLayer (props: MapProps) {
     const this_layer: string = props.numLayers == "Paired" && dual_layers ?
         these_layers : props.layer;
 
-    // palettes:
-    // https://github.com/d3/d3-scale-chromatic
     var Color = d3.scaleSequential().domain(props.layerRange)
-        //.interpolator(d3.interpolateMagma)
-        //.interpolator(d3.interpolateCividis)
         .interpolator(d3.interpolateViridis)
 
     const mapPath: string = props.numLayers == "Paired" && dual_layers ? mapPath2 : mapPath1;
