@@ -2,15 +2,15 @@ import { type NextRequest } from 'next/server'
 
 export async function GET(request: NextRequest): Promise<Response> {
     const { searchParams } = new URL(request.url)
-    const city = searchParams.get('city');
+    const type = searchParams.get('type');
 
-    const url = `https://raw.githubusercontent.com/UrbanAnalyst/CityDataPrivate/main/${city}/dataraw.json`;
+    const f_name = type === "points" ? "data-points.json" : "data-full.json";
+    const url = `https://github.com/mpadge/UrbanAnalyst-demo/releases/download/v0.0.1/${f_name}`;
     const response = await fetch(url, {
         method: 'GET',
-        cache: 'no-store',
+        cache: 'force-cache',
         headers: {
             'Content-Type': 'application/json',
-            'authorization': `token ${process.env.GITHUB_TOKEN}`
         }
     });
     const data = await response.json();
