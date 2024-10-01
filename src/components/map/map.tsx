@@ -26,14 +26,18 @@ const MAP_STYLE = "mapbox://styles/mapbox/light-v10"
  */
 export default function UTAMap (props: MapProps) {
 
-    const this_layer = props.dataSource == "aggregate" ? mapLayer(props) : mapLayerDetailed(props);
-    const [thisMapLayer, setThisMapLayer] = useState(this_layer);
+    const [thisGeoJsonLayer, setThisGeoJsonLayer] = useState(mapLayer(props));;
+    const [thisLineLayer, setThisLineLayer] = useState(mapLayerDetailed(props));;
+    const [thisPointsLayer, setThisPointsLayer] = useState(mapLayerTransport(props));;
 
     useEffect(() => {
-        const this_layer = props.dataSource == "aggregate" ? mapLayer(props) : 
-                (props.dataSource == "transport" ?
-                    mapLayerTransport(props) : mapLayerDetailed(props));
-        setThisMapLayer(this_layer);
+        if (props.dataSource == "aggregate") {
+            setThisGeoJsonLayer(mapLayer(props));
+        } else if (props.dataSource == "detailed") {
+            setThisLineLayer(mapLayerDetailed(props));
+        } else if (props.dataSource == "transport") {
+            setThisPointsLayer(mapLayerTransport(props));
+        }
     }, [props]);
 
     const [mapData, setMapData] = useState(null);
@@ -89,7 +93,11 @@ export default function UTAMap (props: MapProps) {
                         width={"100vw"}
                         height={"100vh"}
                         controller={true}
-                        layers={thisMapLayer}
+                        layers={
+                            props.dataSource == "aggregate" ? thisGeoJsonLayer :
+                                (props.dataSource == "detailed" ? thisLineLayer :
+                                thisPointsLayer)
+                        }
                         initialViewState={props.viewState}
                     >
                         <Map
