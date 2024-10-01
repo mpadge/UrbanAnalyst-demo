@@ -42,6 +42,18 @@ export default function UTAMap (props: MapProps) {
         }
     }, [props]);
 
+    const [thisLayer, setThisLayer] = useState<any>(thisGeoJsonLayer);
+    useEffect(() => {
+        if (props.dataSource == "aggregate") {
+            setThisLayer(thisGeoJsonLayer);
+        } else if (props.dataSource == "detailed") {
+            setThisLayer(thisLineLayer);
+        } else if (props.dataSource == "transport") {
+            setThisLayer(thisPointsLayer);
+        }
+    }, [props.dataSource, thisGeoJsonLayer, thisLineLayer, thisPointsLayer, setThisLayer]);
+
+
     const [mapData, setMapData] = useState(null);
     const [initialSetMapData, setInitialSetMapData] = useState(true);
 
@@ -85,6 +97,11 @@ export default function UTAMap (props: MapProps) {
         transitionInterpolator: new FlyToInterpolator()
     });
 
+    useEffect(() => {
+        console.log("----DATA LOADING COMPLETE = ", props.isDataLoadingComplete);
+    }, [props.isDataLoadingComplete]);
+
+
 
     return (
         <>
@@ -95,11 +112,7 @@ export default function UTAMap (props: MapProps) {
                         width={"100vw"}
                         height={"100vh"}
                         controller={true}
-                        layers={
-                            props.dataSource == "aggregate" ? thisGeoJsonLayer :
-                                (props.dataSource == "detailed" ? thisLineLayer :
-                                thisPointsLayer)
-                        }
+                        layers={thisLayer}
                         initialViewState={props.viewState}
                     >
                         <Map
