@@ -8,7 +8,7 @@ export async function GET(request: NextRequest): Promise<Response> {
     const url = `https://github.com/mpadge/UrbanAnalyst-demo/releases/download/v0.0.1/${f_name}`;
     const response = await fetch(url, {
         method: 'GET',
-        cache: 'force-cache',
+        cache: 'no-cache', // Attempting to cache items > 2MB errors
         headers: {
             'Content-Type': 'application/json',
         }
