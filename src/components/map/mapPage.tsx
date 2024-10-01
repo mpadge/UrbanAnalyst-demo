@@ -10,7 +10,7 @@ import Control from '@/components/map/control';
 import Legend from '@/components/map/legend';
 import UTAMap from '@/components/map/map';
 import Tour from '@/components/map/tour/tour';
-import { loadDataFunction, JSONArray } from '@/components/map/loadData';
+import { loadDataFunction } from '@/components/map/loadData';
 import useWindowSize from '@/components/windowSize';
 import { getTourConfig } from '@/components/map/tour/tourConfig';
 import tourStyles from '@/styles/tour.module.css';
@@ -39,7 +39,7 @@ import { CityDataProps, DataRangeKeys, Data2RangeKeys, ViewState } from '@/data/
 export interface MapProps {
     idx: number,
     dataSource: string,
-    data?: JSONArray,
+    data?: number | null,
     layer: string,
     layer2: string,
     numLayers: string,
@@ -88,7 +88,7 @@ export default function MapPage() {
     const [layerStartStop, setLayerStartStop] = useState<number[]>([0, 1]);
     const [layerRange, setLayerRange] = useState<number[]>([0, 1]);
 
-    const [mapData, setLoadedData] = useState<null | JSONArray>(null);
+    const [mapData, setLoadedData] = useState<number | null>(null);
 
     useEffect(() => {
         var layerLocal = "social_index";
@@ -173,11 +173,15 @@ export default function MapPage() {
     }, [idx, layer, layer2, numLayers, dataSource])
 
     useEffect(() => {
-        loadDataFunction(dataSource, setLoadedData);
+        const sources = ["aggregate", "transport", "detailed"];
+        if (sources.indexOf(dataSource) !== -1) {
+            loadDataFunction(dataSource, setLoadedData);
+        }
     }, [dataSource, setLoadedData]);
 
     useEffect(() => {
         if (mapData) {
+            console.log("-----MAP DATA: ", mapData);
         }
     }, [mapData]);
 
