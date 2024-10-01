@@ -273,6 +273,7 @@ export default function MapPage() {
             <UTAMap
                 idx = {idx}
                 dataSource = {dataSource}
+                data = {mapData}
                 layer = {layer}
                 layer2 = {layer2}
                 numLayers = {numLayers}

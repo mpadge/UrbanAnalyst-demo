@@ -11,8 +11,6 @@ import { MapProps } from "@/components/map/mapPage";
 
 export default function MapLayerDetails (props: MapProps) {
 
-    const mapPath = props.citiesArray[props.idx].path.replace("data\.json", "data-full.json");
-
     const this_layer: string = props.layer;
 
     var Color = d3.scaleSequential().domain(props.layerRange)
@@ -21,7 +19,7 @@ export default function MapLayerDetails (props: MapProps) {
     const layers = [
         new LineLayer({
             id: 'line-layer',
-            data: mapPath,
+            data: props.data,
             stroked: true,
             getSourcePosition: (d: any) => d.from,
             getTargetPosition: (d: any) => d.to,

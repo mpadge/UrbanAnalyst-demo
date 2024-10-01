@@ -11,8 +11,6 @@ import { MapProps } from "@/components/map/mapPage";
 
 export default function MapLayerTransport (props: MapProps) {
 
-    const mapPath = props.citiesArray[props.idx].path.replace("data\.json", "data-points.json");
-
     const this_layer: string = props.layer;
 
     var Color = d3.scaleSequential().domain(props.layerRange)
@@ -21,7 +19,7 @@ export default function MapLayerTransport (props: MapProps) {
     const layers = [
         new ScatterplotLayer({
             id: 'points-layer',
-            data: mapPath,
+            data: props.data,
             stroked: true,
             getPosition: (d: any) => d.position,
             getRadius: 50, // implicit 'radiusScale: 1'

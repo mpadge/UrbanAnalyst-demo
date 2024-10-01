@@ -11,8 +11,6 @@ import { MapProps } from "@/components/map/mapPage";
 
 export default function MapLayer (props: MapProps) {
 
-    const mapPath1 = props.citiesArray[props.idx].path;
-    const mapPath2 = mapPath1.replace("data\.json", "data2.json");
 
     // This code also repeated in mapPage.tsx to calculate [layerMin, layerMax] props.
     const layer1: string = props.layer.replace("\_", "").replace("index", "");
@@ -30,12 +28,10 @@ export default function MapLayer (props: MapProps) {
     var Color = d3.scaleSequential().domain(props.layerRange)
         .interpolator(d3.interpolateViridis)
 
-    const mapPath: string = props.numLayers == "Paired" && dual_layers ? mapPath2 : mapPath1;
-
     const layers = [
         new GeoJsonLayer({
             id: 'polygon-layer',
-            data: mapPath,
+            data: props.data,
             filled: true,
             stroked: true,
             getLineWidth: 10,
