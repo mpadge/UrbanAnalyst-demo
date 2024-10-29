@@ -22,18 +22,6 @@ const TEXT_DATA: any = [{
     position: [7.633, 51.964]
 }]
 
-const textLayer = new TextLayer({
-    id: 'text-layer',
-    data: TEXT_DATA,
-    getPosition: d => d.position,
-    getText: d => d.text,
-    getAlignmentBaseline: 'center',
-    getColor: [255, 128, 0],
-    getFillColor: [255, 128, 0],
-    getSize: 64,
-    getTextAnchor: 'middle'
-});
-
 /**
  * Map function to load DeckGL overlap and base map.
  *
@@ -44,9 +32,10 @@ const textLayer = new TextLayer({
  */
 export default function UTAMap (props: MapProps) {
 
-    const [thisLayer, setThisLayer] = useState<any>(textLayer);
+    const [thisLayer, setThisLayer] = useState<any>(null);
 
     useEffect(() => {
+        setThisLayer(null);
         if (props.data) {
             if (props.dataSource == "aggregate") {
                 setThisLayer(mapLayer(props));
@@ -56,9 +45,24 @@ export default function UTAMap (props: MapProps) {
                 setThisLayer(mapLayerTransport(props));
             }
         } else {
-            setThisLayer(textLayer);
+            // this has to always call a new layer, otherwise it fails to
+            // destroy properly when layers are switched, and is then unable to
+            // be re-rendered. deck.gl docs: "New layers are cheap"!
+            setThisLayer(
+                new TextLayer({
+                    id: 'text-layer',
+                    data: TEXT_DATA,
+                    getPosition: (d: any) => d.position,
+                    getText: (d: any) => d.text,
+                    getAlignmentBaseline: 'center',
+                    getColor: [255, 128, 0],
+                    getFillColor: [255, 128, 0],
+                    getSize: 48,
+                    getTextAnchor: 'middle'
+                })
+            );
         }
-    }, [props, textLayer]);
+    }, [props]);
 
     const [mapData, setMapData] = useState(null);
     const [initialSetMapData, setInitialSetMapData] = useState(true);
