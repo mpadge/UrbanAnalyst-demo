@@ -22,6 +22,18 @@ const TEXT_DATA: any = [{
     position: [7.633, 51.964]
 }]
 
+const textLayer = new TextLayer({
+    id: 'text-layer',
+    data: TEXT_DATA,
+    getPosition: d => d.position,
+    getText: d => d.text,
+    getAlignmentBaseline: 'center',
+    getColor: [255, 128, 0],
+    getFillColor: [255, 128, 0],
+    getSize: 64,
+    getTextAnchor: 'middle'
+});
+
 /**
  * Map function to load DeckGL overlap and base map.
  *
@@ -32,26 +44,9 @@ const TEXT_DATA: any = [{
  */
 export default function UTAMap (props: MapProps) {
 
-    const textLayer = useMemo(() => [
-
-        new TextLayer({
-            id: 'text-layer',
-            data: TEXT_DATA,
-            getPosition: (d: any) => d.position,
-            getText: (d: any) => d.text,
-            getAlignmentBaseline: 'center',
-            getColor: [255, 128, 0],
-            getFillColor: [255, 128, 0],
-            getSize: 48,
-            getTextAnchor: 'middle',
-            pickable: true
-        })
-    ], []);
-
     const [thisLayer, setThisLayer] = useState<any>(textLayer);
 
     useEffect(() => {
-        setThisLayer(textLayer);
         if (props.data) {
             if (props.dataSource == "aggregate") {
                 setThisLayer(mapLayer(props));
@@ -60,6 +55,8 @@ export default function UTAMap (props: MapProps) {
             } else if (props.dataSource == "transport") {
                 setThisLayer(mapLayerTransport(props));
             }
+        } else {
+            setThisLayer(textLayer);
         }
     }, [props, textLayer]);
 
@@ -115,22 +112,19 @@ export default function UTAMap (props: MapProps) {
     return (
         <>
             {(
-                <Suspense fallback={<p>Loading map ...</p>}>
-
-                    <DeckGL
-                        width={"100vw"}
-                        height={"100vh"}
-                        controller={true}
-                        layers={thisLayer}
-                        initialViewState={props.viewState}
+                <DeckGL
+                    width={"100vw"}
+                    height={"100vh"}
+                    controller={true}
+                    layers={thisLayer}
+                    initialViewState={props.viewState}
+                >
+                    <Map
+                        mapStyle={MAP_STYLE}
+                        mapboxAccessToken={MapboxAccessToken}
                     >
-                        <Map
-                            mapStyle={MAP_STYLE}
-                            mapboxAccessToken={MapboxAccessToken}
-                        >
-                        </Map>
-                    </DeckGL>
-                </Suspense>
+                    </Map>
+                </DeckGL>
             )}
         </>
     )
