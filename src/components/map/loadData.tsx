@@ -1,11 +1,19 @@
 export async function loadDataFunction(type: string, setLoadedData: (data: number) => void) {
-    const response = await fetch(`/api/gh?type=${type}`);
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+
+    const mapPathBase = '/data/muenster/'
+
+    var mapPath;
+    if (type === 'detailed') {
+        mapPath = mapPathBase + 'data-full.json'
+    } else if (type === 'transport') {
+        mapPath = mapPathBase + 'data-transport.json'
+    } else { // 'aggregate'
+        mapPath = mapPathBase + 'data.json'
     }
-    const data = await response.json();
-    if (data) {
-        setLoadedData(data);
-    }
+
+    fetch(mapPath)
+        .then(response => response.json())
+        .then(data => setLoadedData(data))
+        .catch((error) => console.error('Error:', error));
 }
 
