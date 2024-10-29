@@ -33,4 +33,12 @@ dat <- dplyr::mutate (
 this_dir <- fs::dir_ls (".", type = "directory")
 f_out <- fs::path (this_dir, "data-full.json")
 # geojsonio::geojson_write (dat, file = f_out)
-jsonlite::write_json (dat, f_out)
+# jsonlite::write_json (dat, f_out)
+
+f_out <- fs::path (this_dir, "full-geo_xy.json")
+jsonlite::write_json (dat$position, f_out)
+dat <- dplyr::select (dat, -c (osm_id, position))
+for (n in names (dat)) {
+    f_out <- fs::path (this_dir, paste0 ("full-dat-", n, ".Rds"))
+    jsonlite::write_json (dat [[n]], f_out)
+}
