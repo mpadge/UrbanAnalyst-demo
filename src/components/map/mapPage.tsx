@@ -178,9 +178,9 @@ export default function MapPage() {
         if (sources.indexOf(dataSource) !== -1) {
             setLoadedData(null);
             setDataLoadingComplete(false);
-            loadDataFunction(dataSource, setLoadedData);
+            loadDataFunction(dataSource, setLoadedData, numLayers);
         }
-    }, [dataSource, setLoadedData, setDataLoadingComplete]);
+    }, [dataSource, setLoadedData, setDataLoadingComplete, numLayers]);
 
     useEffect(() => {
         if (mapData) {
