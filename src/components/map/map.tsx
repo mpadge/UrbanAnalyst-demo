@@ -18,7 +18,7 @@ const MapboxAccessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
 const MAP_STYLE = "mapbox://styles/mapbox/light-v10"
 
 const TEXT_DATA: any = [{
-    text: 'Loading ...',
+    text: 'Loading data ...',
     position: [7.633, 51.964]
 }]
 
@@ -48,36 +48,20 @@ export default function UTAMap (props: MapProps) {
         })
     ], []);
 
-    const [thisGeoJsonLayer, setThisGeoJsonLayer] = useState(mapLayer(props));
-    const [thisLineLayer, setThisLineLayer] = useState(mapLayerDetailed(props));
-    const [thisPointsLayer, setThisPointsLayer] = useState(mapLayerTransport(props));
-
     const [thisLayer, setThisLayer] = useState<any>(textLayer);
 
     useEffect(() => {
         setThisLayer(textLayer);
         if (props.data) {
             if (props.dataSource == "aggregate") {
-                setThisGeoJsonLayer(mapLayer(props));
+                setThisLayer(mapLayer(props));
             } else if (props.dataSource == "detailed") {
-                setThisLineLayer(mapLayerDetailed(props));
+                setThisLayer(mapLayerDetailed(props));
             } else if (props.dataSource == "transport") {
-                setThisPointsLayer(mapLayerTransport(props));
+                setThisLayer(mapLayerTransport(props));
             }
         }
     }, [props, textLayer]);
-
-    useEffect(() => {
-        if (props.dataSource == "aggregate") {
-            setThisLayer(thisGeoJsonLayer);
-        } else if (props.dataSource == "detailed") {
-            setThisLayer(thisLineLayer);
-        } else if (props.dataSource == "transport") {
-            setThisLayer(thisPointsLayer);
-        } else {
-            setThisLayer(textLayer);
-        }
-    }, [props.dataSource, thisGeoJsonLayer, thisLineLayer, thisPointsLayer, textLayer, setThisLayer]);
 
     const [mapData, setMapData] = useState(null);
     const [initialSetMapData, setInitialSetMapData] = useState(true);
@@ -126,7 +110,7 @@ export default function UTAMap (props: MapProps) {
         console.log("-----DATA LOADING: ", props.isDataLoadingComplete);
     }, [props.isDataLoadingComplete]);
 
-    console.log("-----LAYER: ", thisLayer);
+    console.log("-----LAYER to be mapped: ", thisLayer);
 
     return (
         <>
