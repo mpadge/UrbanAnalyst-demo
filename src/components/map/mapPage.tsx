@@ -185,7 +185,6 @@ export default function MapPage() {
     useEffect(() => {
         if (mapData) {
             setDataLoadingComplete(true);
-            console.log("-----SETTING DATA LOADING COMPLETE TO 'true'-----");
         }
     }, [mapData, setDataLoadingComplete]);
 
@@ -197,7 +196,6 @@ export default function MapPage() {
     }
     const handleViewStateChange = (pViewState: any) => {
         setViewState((prevViewState) => { return { ...prevViewState, ...pViewState }; });
-        //setViewState(pViewState);
     }
 
     const handleDataSourceChange = (dataSource: string) => {

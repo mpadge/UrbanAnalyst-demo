@@ -107,12 +107,6 @@ export default function UTAMap (props: MapProps) {
         transitionInterpolator: new FlyToInterpolator()
     });
 
-    useEffect(() => {
-        console.log("-----DATA LOADING: ", props.isDataLoadingComplete);
-    }, [props.isDataLoadingComplete]);
-
-    console.log("-----LAYER to be mapped: ", thisLayer);
-
     return (
         <>
             {(
