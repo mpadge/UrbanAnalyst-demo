@@ -88,7 +88,7 @@ export default function MapPage() {
     const [layerStartStop, setLayerStartStop] = useState<number[]>([0, 1]);
     const [layerRange, setLayerRange] = useState<number[]>([0, 1]);
 
-    const [mapData, setLoadedData] = useState<number[] | null>(null);
+    const [mapData, setLoadedData] = useState<any | null>(null);
 
     useEffect(() => {
         var layerLocal = "social_index";

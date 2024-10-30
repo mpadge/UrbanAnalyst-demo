@@ -1,4 +1,4 @@
-export async function LoadDataDetailedFunction(setLoadedData: (data: number[]) => void, numLayers: string, layer: string) {
+export async function LoadDataDetailedFunction(setLoadedData: (data: any) => void, numLayers: string, layer: string) {
 
     const mapPathBase = '/data/muenster/'
 
