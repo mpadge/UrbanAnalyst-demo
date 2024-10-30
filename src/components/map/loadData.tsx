@@ -6,18 +6,24 @@ export async function LoadDataDetailedFunction(setLoadedData: (data: number[]) =
     const geomData = await fetch(mapPathGeom)
         .then(response => response.json())
         .catch((error) => console.error('Error fetching full data geometry:', error));
-    console.log("-----GEOMDATA = ", geomData);
 
     const mapPathData = mapPathBase + 'data-full-' + layer + '.json';
-    console.log("-----MAPPATHDATA = " + mapPathData);
     const data = await fetch(mapPathData)
         .then(response => response.json())
         .catch((error) => console.error('Error fetching full data column:', error));
-    console.log("-----DATA COLUMN for layer [" + layer + "] = ", data);
 
-    const combinedData = geomData && data ? [...(geomData as number[]), ...(data as number[])] : [];
-    console.log("-----COMBINEDDATA = ", combinedData);
-    setLoadedData(combinedData);
+    const combinedData = geomData && data
+        ? Array.from({ length: Math.max(geomData.length, data.length) }, (_, i) =>
+            [geomData[i] || null, data[i] || null])
+        : [];
+
+    const namedData = combinedData.map(([geomValue, dataValue]) => ({
+        [`${layer}`]: dataValue,
+        ["from"]: geomValue.from,
+        ["to"]: geomValue.to
+    }))
+
+    setLoadedData(namedData);
 
     return null;
 
