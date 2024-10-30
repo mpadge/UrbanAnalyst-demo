@@ -9,7 +9,7 @@ import Control from '@/components/map/control';
 import Legend from '@/components/map/legend';
 import UTAMap from '@/components/map/map';
 import Tour from '@/components/map/tour/tour';
-import { loadDataFunction } from '@/components/map/loadData';
+import { LoadDataFunction, LoadDataDetailedFunction } from '@/components/map/loadData';
 import useWindowSize from '@/components/windowSize';
 import { getTourConfig } from '@/components/map/tour/tourConfig';
 import tourStyles from '@/styles/tour.module.css';
@@ -88,7 +88,7 @@ export default function MapPage() {
     const [layerStartStop, setLayerStartStop] = useState<number[]>([0, 1]);
     const [layerRange, setLayerRange] = useState<number[]>([0, 1]);
 
-    const [mapData, setLoadedData] = useState<number | null>(null);
+    const [mapData, setLoadedData] = useState<number[] | null>(null);
 
     useEffect(() => {
         var layerLocal = "social_index";
@@ -178,9 +178,13 @@ export default function MapPage() {
         if (sources.indexOf(dataSource) !== -1) {
             setLoadedData(null);
             setDataLoadingComplete(false);
-            loadDataFunction(dataSource, setLoadedData, numLayers);
+            if (dataSource === 'detailed') {
+                LoadDataDetailedFunction(setLoadedData, numLayers, layer);
+            } else {
+                LoadDataFunction(dataSource, setLoadedData, numLayers, layer);
+            }
         }
-    }, [dataSource, setLoadedData, setDataLoadingComplete, numLayers]);
+    }, [dataSource, setLoadedData, setDataLoadingComplete, numLayers, layer]);
 
     useEffect(() => {
         if (mapData) {
