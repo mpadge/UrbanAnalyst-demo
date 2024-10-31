@@ -76,9 +76,11 @@ export default function Legend (props: LegendProps) {
 
             // Colours are then independent of scaleband, and always on linear
             // (sequential) scales. Note that palette has to match one in map.tsx,
-            // which is also reversed, so domain is [max, min].
+            // which is also reversed, so domain is [max, min], except for  "popdens"
+            const thisRange = layer_name === "popdens" ?
+                [layerRange[0], layerRange[1]] : [layerRange[1], layerRange[0]];
             var Color = d3.scaleSequential()
-            .domain([layerRange[1], layerRange[0]])
+            .domain(thisRange)
             .interpolator(d3.interpolateViridis);
 
             var rect = svg.append("g")

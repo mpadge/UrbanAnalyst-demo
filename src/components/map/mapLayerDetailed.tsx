@@ -34,7 +34,9 @@ export default function MapLayerDetails (props: MapProps) {
                     layerval = props.layerRange[0];
                 }
                 // Invert the palette:
-                layerval = props.layerRange[0] + (props.layerRange[1] - layerval);
+                if (props.layer !== "parking" && props.layer !== "popdens") {
+                    layerval = props.layerRange[0] + (props.layerRange[1] - layerval);
+                }
                 const layerarr: any = d3.color(Color(layerval));
                 var red = 0, green = 0, blue = 0;
                 const layerAlpha = layerIsNaN ? 0 : 255;

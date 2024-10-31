@@ -34,6 +34,9 @@ import { CityDataProps, DataRangeKeys, Data2RangeKeys, ViewState } from '@/data/
  *   `rangeSlider` input.
  * - `layerStartStop`: Range of values spanned by `layerRange` slider. These are
  *   defined on page load, and fixed from then on.
+ *
+ * Scales for colour schemes, and whether they are reversed or log-scaled, are
+ * defined for the detailed layer data in `loadData` and `legend`.
  */
 export interface MapProps {
     idx: number,
