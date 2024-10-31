@@ -1,5 +1,3 @@
-import { minWithoutNaN, maxWithoutNaN } from '@/components/utils/trimRange';
-
 export async function LoadDataDetailedFunction(
     setLoadedData: (data: any) => void,
     numLayers: string,
@@ -20,7 +18,7 @@ export async function LoadDataDetailedFunction(
         .catch((error) => console.error('Error fetching full data column:', error));
 
     if (data) {
-        data = data.map(val => val === "NA" ? NaN : Number (val));
+        data = data.map((val: number) => typeof val === "string" && val === "NA" ? NaN : Number (val));
         if (layer === "bike_index" || layer === "natural") {
             data.forEach((x: number, index: number) => {
                 data[index] = 1 - x;
