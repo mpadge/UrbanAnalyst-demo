@@ -47,7 +47,7 @@ export default function MapLayerDetails (props: MapProps) {
             },
             opacity: 1 - props.alpha,
             updateTriggers: {
-                getFillColor: [this_layer, props.layerRange]
+                getColor: [props.layerRange]
             }
         })
     ]
