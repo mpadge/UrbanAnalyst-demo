@@ -21,9 +21,13 @@ export async function LoadDataDetailedFunction(
 
     if (data) {
         data = data.map(val => val === "NA" ? NaN : Number (val));
-        if (layer == "bike_index") {
+        if (layer === "bike_index" || layer === "natural") {
             data.forEach((x: number, index: number) => {
                 data[index] = 1 - x;
+            })
+        } else if (layer === "school_dist" || layer === "popdens") {
+            data.forEach((x: number, index: number) => {
+                data[index] = Math.log10(x);
             })
         }
         const layerMin = Math.min(...data.filter(Number.isFinite));
