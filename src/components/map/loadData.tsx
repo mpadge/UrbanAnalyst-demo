@@ -18,6 +18,11 @@ export async function LoadDataDetailedFunction(
         .catch((error) => console.error('Error fetching full data column:', error));
 
     if (data) {
+        if (layer == "bike_index") {
+            data.forEach((x: number, index: number) => {
+                data[index] = 1 - x;
+            })
+        }
         const layerMin = Math.min(...data);
         const layerMax = Math.max(...data);
         const layerRange = [layerMin, layerMax];
