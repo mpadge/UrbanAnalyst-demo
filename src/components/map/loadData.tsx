@@ -2,7 +2,7 @@ export async function LoadDataDetailedFunction(
     setLoadedData: (data: any) => void,
     numLayers: string,
     layer: string,
-    handleLayerRangeChange: (layerRange: number[]) => void
+    handleLayerStartStopChange: (layerRange: number[]) => void
 ) {
 
     const mapPathBase = '/data/muenster/'
@@ -31,7 +31,7 @@ export async function LoadDataDetailedFunction(
         const layerMin = Math.min(...data.filter(Number.isFinite));
         const layerMax = Math.max(...data.filter(Number.isFinite));
         const layerRange = [layerMin, layerMax];
-        handleLayerRangeChange(layerRange);
+        handleLayerStartStopChange(layerRange);
     }
 
     const combinedData = geomData && data

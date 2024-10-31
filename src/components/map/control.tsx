@@ -45,6 +45,7 @@ interface MapControlProps {
     handleLayerChange: (layer: string) => void,
     handleLayer2Change: (layer: string) => void,
     handleLayerRangeChange: (layerRange: number[]) => void,
+    handleLayerStartStopChange: (layerRange: number[]) => void,
     handleTourOpen: (isTourOpen: boolean) => void
 }
 

@@ -57,6 +57,7 @@ export interface MapProps {
     handleLayerChange: (layer: string) => void
     handleLayer2Change: (layer2: string) => void
     handleLayerRangeChange: (layerRange: number[]) => void,
+    handleLayerStartStopChange: (layerRange: number[]) => void,
 }
 
 /**
@@ -217,6 +218,10 @@ export default function MapPage() {
         setLayerRange(layerRange);
     }
 
+    const handleLayerStartStopChange = (layerRange: number[]) => {
+        setLayerStartStop(layerRange);
+    }
+
     const [dataLoadingComplete, setDataLoadingComplete] = useState<boolean>(false);
     useEffect(() => {
         const sources = ["aggregate", "transport", "detailed"];
@@ -224,7 +229,7 @@ export default function MapPage() {
             setLoadedData(null);
             setDataLoadingComplete(false);
             if (dataSource === 'detailed') {
-                LoadDataDetailedFunction(setLoadedData, numLayers, layer, handleLayerRangeChange);
+                LoadDataDetailedFunction(setLoadedData, numLayers, layer, handleLayerStartStopChange);
             } else {
                 LoadDataFunction(dataSource, setLoadedData, numLayers, layer);
             }
@@ -298,6 +303,7 @@ export default function MapPage() {
                 handleLayerChange = {handleLayerChange}
                 handleLayer2Change = {handleLayer2Change}
                 handleLayerRangeChange = {handleLayerRangeChange}
+                handleLayerStartStopChange = {handleLayerStartStopChange}
             />
             <Control
                 idx = {idx}
@@ -319,6 +325,7 @@ export default function MapPage() {
                 handleLayerChange = {handleLayerChange}
                 handleLayer2Change = {handleLayer2Change}
                 handleLayerRangeChange = {handleLayerRangeChange}
+                handleLayerStartStopChange = {handleLayerStartStopChange}
                 handleTourOpen = {handleTourOpen}
             />
             <Legend
