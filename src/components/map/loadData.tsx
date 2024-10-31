@@ -1,4 +1,9 @@
-export async function LoadDataDetailedFunction(setLoadedData: (data: any) => void, numLayers: string, layer: string) {
+export async function LoadDataDetailedFunction(
+    setLoadedData: (data: any) => void,
+    numLayers: string,
+    layer: string,
+    handleLayerRangeChange: (layerRange: number[]) => void
+) {
 
     const mapPathBase = '/data/muenster/'
 
@@ -11,6 +16,13 @@ export async function LoadDataDetailedFunction(setLoadedData: (data: any) => voi
     const data = await fetch(mapPathData)
         .then(response => response.json())
         .catch((error) => console.error('Error fetching full data column:', error));
+
+    if (data) {
+        const layerMin = Math.min(...data);
+        const layerMax = Math.max(...data);
+        const layerRange = [layerMin, layerMax];
+        handleLayerRangeChange(layerRange);
+    }
 
     const combinedData = geomData && data
         ? Array.from({ length: Math.max(geomData.length, data.length) }, (_, i) =>

@@ -70,7 +70,7 @@ export default function UTAMap (props: MapProps) {
     const { dataSource, idx, layer, citiesArray, handleLayerRangeChange } = props;
     useEffect(() => {
 
-        if (dataSource === "transport" || dataSource == "detailed") {
+        if (dataSource === "transport") {
 
             const filename = dataSource === "transport" ? "data-points.json" : "data-full.json";
             const mapPath = citiesArray[idx].path.replace("data\.json", filename);

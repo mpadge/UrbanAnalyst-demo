@@ -172,26 +172,6 @@ export default function MapPage() {
         setLayerStartStop([layer_start, layer_stop]);
     }, [idx, layer, layer2, numLayers, dataSource])
 
-    const [dataLoadingComplete, setDataLoadingComplete] = useState<boolean>(false);
-    useEffect(() => {
-        const sources = ["aggregate", "transport", "detailed"];
-        if (sources.indexOf(dataSource) !== -1) {
-            setLoadedData(null);
-            setDataLoadingComplete(false);
-            if (dataSource === 'detailed') {
-                LoadDataDetailedFunction(setLoadedData, numLayers, layer);
-            } else {
-                LoadDataFunction(dataSource, setLoadedData, numLayers, layer);
-            }
-        }
-    }, [dataSource, setLoadedData, setDataLoadingComplete, numLayers, layer]);
-
-    useEffect(() => {
-        if (mapData) {
-            setDataLoadingComplete(true);
-        }
-    }, [mapData, setDataLoadingComplete]);
-
     const handleAlphaChange = (alpha: number) => {
         setAlpha(alpha);
         if (typeof window != "undefined") {
@@ -233,6 +213,26 @@ export default function MapPage() {
     const handleLayerRangeChange = (layerRange: number[]) => {
         setLayerRange(layerRange);
     }
+
+    const [dataLoadingComplete, setDataLoadingComplete] = useState<boolean>(false);
+    useEffect(() => {
+        const sources = ["aggregate", "transport", "detailed"];
+        if (sources.indexOf(dataSource) !== -1) {
+            setLoadedData(null);
+            setDataLoadingComplete(false);
+            if (dataSource === 'detailed') {
+                LoadDataDetailedFunction(setLoadedData, numLayers, layer, handleLayerRangeChange);
+            } else {
+                LoadDataFunction(dataSource, setLoadedData, numLayers, layer);
+            }
+        }
+    }, [dataSource, setLoadedData, setDataLoadingComplete, numLayers, layer]);
+
+    useEffect(() => {
+        if (mapData) {
+            setDataLoadingComplete(true);
+        }
+    }, [mapData, setDataLoadingComplete]);
 
     // ----- TOUR start-----
     const [tourClass, setTourClass] = useState(tourStyles.tourhelperLight);
