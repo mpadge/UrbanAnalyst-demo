@@ -23,7 +23,7 @@ export async function LoadDataDetailedFunction(
             data.forEach((x: number, index: number) => {
                 data[index] = 1 - x;
             })
-        } else if (layer === "school_dist" || layer === "popdens") {
+        } else if (layer === "school_dist" || layer === "popdens" || layer === "intervals") {
             data.forEach((x: number, index: number) => {
                 data[index] = Math.log10(x);
             })
