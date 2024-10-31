@@ -1,3 +1,5 @@
+import { minWithoutNaN, maxWithoutNaN } from '@/components/utils/trimRange';
+
 export async function LoadDataDetailedFunction(
     setLoadedData: (data: any) => void,
     numLayers: string,
@@ -13,18 +15,19 @@ export async function LoadDataDetailedFunction(
         .catch((error) => console.error('Error fetching full data geometry:', error));
 
     const mapPathData = mapPathBase + 'data-full-' + layer + '.json';
-    const data = await fetch(mapPathData)
+    var data = await fetch(mapPathData)
         .then(response => response.json())
         .catch((error) => console.error('Error fetching full data column:', error));
 
     if (data) {
+        data = data.map(val => val === "NA" ? NaN : Number (val));
         if (layer == "bike_index") {
             data.forEach((x: number, index: number) => {
                 data[index] = 1 - x;
             })
         }
-        const layerMin = Math.min(...data);
-        const layerMax = Math.max(...data);
+        const layerMin = Math.min(...data.filter(Number.isFinite));
+        const layerMax = Math.max(...data.filter(Number.isFinite));
         const layerRange = [layerMin, layerMax];
         handleLayerRangeChange(layerRange);
     }
