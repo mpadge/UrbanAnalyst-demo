@@ -105,6 +105,14 @@ export default function Control (props: MapControlProps) {
         setSliderValues(newValue);
     };
 
+    // Effect to reset to single-layer only when source != "aggregate"
+    const { dataSource, handleNumLayersChange } = props;
+    useEffect (() => {
+        if (dataSource != "aggregate") {
+            handleNumLayersChange("single");
+        }
+    }, [dataSource, handleNumLayersChange])
+
     return (
         <>
             <div id="top-left-container" className={`${styles.controls} ${styles.light} ${junctionFont.className}`}>
@@ -141,13 +149,15 @@ export default function Control (props: MapControlProps) {
                         </Box>
                         <Divider sx={{ color: 'black' }} flexItem >Layer Controls</Divider>
                         <Box sx={{ p: 1 }}>
-                            <Stack spacing={1} alignItems="center" marginBottom="8px">
-                                <SelectNumLayers
-                                    numLayers = {props.numLayers}
-                                    numLayersOptions = {props.numLayersOptions}
-                                    handleNumLayersChange = {props.handleNumLayersChange}
-                                />
-                            </Stack>
+                            {props.dataSource == "aggregate" &&
+                                <Stack spacing={1} alignItems="center" marginBottom="8px">
+                                    <SelectNumLayers
+                                        numLayers = {props.numLayers}
+                                        numLayersOptions = {props.numLayersOptions}
+                                        handleNumLayersChange = {props.handleNumLayersChange}
+                                    />
+                                </Stack>
+                            }
                             <Stack spacing={1}>
                                 <LayerList
                                     title = {props.numLayers == "Paired" ? "Layer1" : "Layer"}
@@ -156,7 +166,7 @@ export default function Control (props: MapControlProps) {
                                     cityLayers = {props.cityLayers}
                                 />
 
-                                {props.numLayers == "Paired"  &&
+                                {props.numLayers == "Paired" && props.dataSource == "aggregate" &&
                                     <LayerList2
                                         title = "Layer2"
                                         layer1 = {props.layer}
