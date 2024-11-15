@@ -1,12 +1,11 @@
 export async function LoadDataDetailed(
+    mapPathBase: string,
     setLoadedData: (data: any) => void,
     mapDataGeom: any,
     numLayers: string,
     layer: string,
     handleLayerStartStopChange: (layerRange: number[]) => void
 ) {
-
-    const mapPathBase = '/data/muenster/'
 
     const mapPathData = mapPathBase + 'data-full-' + layer + '.json';
     var data = await fetch(mapPathData)
@@ -50,13 +49,12 @@ export async function LoadDataDetailedGeom(
 }
 
 export async function LoadDataTransport(
+    mapPathBase: string,
     setLoadedData: (data: any) => void,
     numLayers: string,
     layer: string,
     handleLayerStartStopChange: (layerRange: number[]) => void
 ) {
-
-    const mapPathBase = '/data/muenster/'
 
     const mapPathGeom = mapPathBase + 'data-transport-geom.json';
     const geomDataFlat = await fetch(mapPathGeom)
@@ -105,14 +103,14 @@ export async function LoadDataTransport(
     return null;
 
 }
+
 export async function LoadDataAggregate(
+    mapPathBase: string,
     setLoadedData: (data: number) => void,
     numLayers: string,
     layer: string,
     handleLayerStartStopChange: (layerRange: number[]) => void
 ) {
-
-    const mapPathBase = '/data/muenster/'
 
     var mapPath;
     const fname: string = numLayers == "Paired" ? 'data2.json' : 'data.json';

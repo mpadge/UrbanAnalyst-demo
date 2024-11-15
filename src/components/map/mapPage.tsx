@@ -243,14 +243,14 @@ export default function MapPage() {
             setLoadedData(null);
             setDataLoadingComplete(false);
             if (dataSource === 'detailed') {
-                LoadDataDetailed(setLoadedData, mapDataGeom, numLayers, layer, handleLayerStartStopChange);
+                LoadDataDetailed(mapPathBase, setLoadedData, mapDataGeom, numLayers, layer, handleLayerStartStopChange);
             } else if (dataSource == 'transport') {
-                LoadDataTransport(setLoadedData, numLayers, layer, handleLayerStartStopChange);
+                LoadDataTransport(mapPathBase, setLoadedData, numLayers, layer, handleLayerStartStopChange);
             } else {
-                LoadDataAggregate(setLoadedData, numLayers, layer, handleLayerStartStopChange);
+                LoadDataAggregate(mapPathBase, setLoadedData, numLayers, layer, handleLayerStartStopChange);
             }
         }
-    }, [dataSource, setLoadedData, mapDataGeom, setDataLoadingComplete, numLayers, layer]);
+    }, [mapPathBase, dataSource, setLoadedData, mapDataGeom, setDataLoadingComplete, numLayers, layer]);
 
     useEffect(() => {
         if (mapData) {
