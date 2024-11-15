@@ -62,21 +62,22 @@ export async function LoadDataTransport(
         .then(response => response.json())
         .catch((error) => console.error('Error fetching transport data column:', error));
 
-    const util = require('util');
-
     if (data) {
         data = TransformData(data, layer);
         handleLayerStartStopChange(DataLayerRange(data));;
     }
 
+    // const util = require('util');
+    // console.log("----- MAP DATA GEOM = " + util.inspect(mapDataGeom, {depth: null}));
+
     const combinedData = data && mapDataGeom &&
+        typeof mapDataGeom === 'object' &&
+        typeof mapDataGeom.x !== 'undefined' &&
+        typeof mapDataGeom.y !== 'undefined' &&
         data.map((_: any, index: number) => ({
             [layer]: data[index],
             position: [mapDataGeom.x[index], mapDataGeom.y[index]]
         }));
-
-    // const util = require('util');
-    // console.log("-----str combinedData = " + util.inspect(combinedData, {depth: null}));
 
     if (combinedData) {
         setLoadedData(combinedData);
