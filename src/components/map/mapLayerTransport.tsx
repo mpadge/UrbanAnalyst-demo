@@ -11,6 +11,7 @@ import { MapProps } from "@/components/map/mapPage";
 
 export default function MapLayerTransport (props: MapProps) {
 
+    if (!props.data) return [];
     if (props.data === null) return [];
 
     const this_layer: string = props.layer;

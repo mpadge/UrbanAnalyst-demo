@@ -9,7 +9,7 @@ import Control from '@/components/map/control';
 import Legend from '@/components/map/legend';
 import UTAMap from '@/components/map/map';
 import Tour from '@/components/map/tour/tour';
-import { LoadDataFunction, LoadDataDetailedFunction } from '@/components/map/loadData';
+import { LoadDataFunction, LoadDataDetailedFunction, LoadDataTransportFunction } from '@/components/map/loadData';
 import useWindowSize from '@/components/windowSize';
 import { getTourConfig } from '@/components/map/tour/tourConfig';
 import tourStyles from '@/styles/tour.module.css';
@@ -230,6 +230,8 @@ export default function MapPage() {
             setDataLoadingComplete(false);
             if (dataSource === 'detailed') {
                 LoadDataDetailedFunction(setLoadedData, numLayers, layer, handleLayerStartStopChange);
+            } else if (dataSource == 'transport') {
+                LoadDataTransportFunction(setLoadedData, numLayers, layer, handleLayerStartStopChange);
             } else {
                 LoadDataFunction(dataSource, setLoadedData, numLayers, layer);
             }

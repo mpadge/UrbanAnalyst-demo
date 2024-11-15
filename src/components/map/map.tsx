@@ -64,43 +64,6 @@ export default function UTAMap (props: MapProps) {
         }
     }, [props]);
 
-    const [mapData, setMapData] = useState(null);
-    const [initialSetMapData, setInitialSetMapData] = useState(true);
-
-    const { dataSource, idx, layer, citiesArray, handleLayerRangeChange } = props;
-    useEffect(() => {
-
-        if (dataSource === "transport") {
-
-            const filename = dataSource === "transport" ? "data-points.json" : "data-full.json";
-            const mapPath = citiesArray[idx].path.replace("data\.json", filename);
-
-            fetch(mapPath)
-                .then(response => response.json())
-                .then(data => {
-                    const filteredData = data.map((item: any) => ({
-                        position: item.position,
-                        layer: item[layer]
-                    }));
-
-                    if (filteredData) {
-
-                        setMapData(filteredData);
-
-                        if (initialSetMapData) {
-                            const layerMin = Math.min(...filteredData.map((d: any) => d.layer));
-                            const layerMax = Math.max(...filteredData.map((d: any) => d.layer));
-                            const layerRange = [layerMin, layerMax];
-                            handleLayerRangeChange(layerRange);
-                            setInitialSetMapData(false);
-                        }
-                    }
-                })
-                .catch((error) => console.error('Error:', error));
-        }
-    }, [dataSource, idx, layer, citiesArray, handleLayerRangeChange,
-            setMapData, initialSetMapData, setInitialSetMapData])
-
     const [viewState, setViewState] = useState({
         ...props.viewState,
         transitionDuration: 2000,
