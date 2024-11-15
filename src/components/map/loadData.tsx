@@ -119,17 +119,19 @@ export async function LoadDataTransportFunction(
     return null;
 
 }
-export async function LoadDataFunction(type: string, setLoadedData: (data: number) => void, numLayers: string, layer: string) {
+export async function LoadDataAggregateFunction(
+    setLoadedData: (data: number) => void,
+    numLayers: string,
+    layer: string,
+    handleLayerStartStopChange: (layerRange: number[]) => void
+) {
 
     const mapPathBase = '/data/muenster/'
 
     var mapPath;
-    if (type === 'transport') {
-        mapPath = mapPathBase + 'data-transport.json';
-    } else { // 'aggregate'
-        const fname: string = numLayers == "Paired" ? 'data2.json' : 'data.json';
-        mapPath = mapPathBase + fname;
-    }
+    const fname: string = numLayers == "Paired" ? 'data2.json' : 'data.json';
+    mapPath = mapPathBase + fname;
+
     fetch(mapPath)
         .then(response => response.json())
         .then(data => setLoadedData(data))
@@ -137,4 +139,3 @@ export async function LoadDataFunction(type: string, setLoadedData: (data: numbe
 
     return null;
 }
-
