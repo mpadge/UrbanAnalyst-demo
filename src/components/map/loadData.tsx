@@ -1,4 +1,4 @@
-export async function LoadDataDetailedFunction(
+export async function LoadDataDetailed(
     setLoadedData: (data: any) => void,
     numLayers: string,
     layer: string,
@@ -39,7 +39,7 @@ export async function LoadDataDetailedFunction(
 
 }
 
-export async function LoadDataTransportFunction(
+export async function LoadDataTransport(
     setLoadedData: (data: any) => void,
     numLayers: string,
     layer: string,
@@ -95,7 +95,7 @@ export async function LoadDataTransportFunction(
     return null;
 
 }
-export async function LoadDataAggregateFunction(
+export async function LoadDataAggregate(
     setLoadedData: (data: number) => void,
     numLayers: string,
     layer: string,

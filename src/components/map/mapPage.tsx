@@ -9,7 +9,7 @@ import Control from '@/components/map/control';
 import Legend from '@/components/map/legend';
 import UTAMap from '@/components/map/map';
 import Tour from '@/components/map/tour/tour';
-import { LoadDataAggregateFunction, LoadDataDetailedFunction, LoadDataTransportFunction } from '@/components/map/loadData';
+import { LoadDataAggregate, LoadDataDetailed, LoadDataTransport} from '@/components/map/loadData';
 import useWindowSize from '@/components/windowSize';
 import { getTourConfig } from '@/components/map/tour/tourConfig';
 import tourStyles from '@/styles/tour.module.css';
@@ -229,11 +229,11 @@ export default function MapPage() {
             setLoadedData(null);
             setDataLoadingComplete(false);
             if (dataSource === 'detailed') {
-                LoadDataDetailedFunction(setLoadedData, numLayers, layer, handleLayerStartStopChange);
+                LoadDataDetailed(setLoadedData, numLayers, layer, handleLayerStartStopChange);
             } else if (dataSource == 'transport') {
-                LoadDataTransportFunction(setLoadedData, numLayers, layer, handleLayerStartStopChange);
+                LoadDataTransport(setLoadedData, numLayers, layer, handleLayerStartStopChange);
             } else {
-                LoadDataAggregateFunction(setLoadedData, numLayers, layer, handleLayerStartStopChange);
+                LoadDataAggregate(setLoadedData, numLayers, layer, handleLayerStartStopChange);
             }
         }
     }, [dataSource, setLoadedData, setDataLoadingComplete, numLayers, layer]);
