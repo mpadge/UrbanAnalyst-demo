@@ -18,20 +18,8 @@ export async function LoadDataDetailedFunction(
         .catch((error) => console.error('Error fetching full data column:', error));
 
     if (data) {
-        data = data.map((val: number) => typeof val === "string" && val === "NA" ? NaN : Number (val));
-        if (layer === "bike_index" || layer === "natural") {
-            data.forEach((x: number, index: number) => {
-                data[index] = 1 - x;
-            })
-        } else if (layer === "school_dist" || layer === "popdens" || layer === "intervals") {
-            data.forEach((x: number, index: number) => {
-                data[index] = Math.log10(x);
-            })
-        }
-        const layerMin = Math.min(...data.filter(Number.isFinite));
-        const layerMax = Math.max(...data.filter(Number.isFinite));
-        const layerRange = [layerMin, layerMax];
-        handleLayerStartStopChange(layerRange);
+        data = TransformData(data, layer);
+        handleLayerStartStopChange(DataLayerRange(data));;
     }
 
     const combinedData = geomData && data
@@ -87,20 +75,8 @@ export async function LoadDataTransportFunction(
         .catch((error) => console.error('Error fetching transport data column:', error));
 
     if (data) {
-        data = data.map((val: number) => typeof val === "string" && val === "NA" ? NaN : Number (val));
-        if (layer === "bike_index" || layer === "natural") {
-            data.forEach((x: number, index: number) => {
-                data[index] = 1 - x;
-            })
-        } else if (layer === "school_dist" || layer === "popdens" || layer === "intervals") {
-            data.forEach((x: number, index: number) => {
-                data[index] = Math.log10(x);
-            })
-        }
-        const layerMin = Math.min(...data.filter(Number.isFinite));
-        const layerMax = Math.max(...data.filter(Number.isFinite));
-        const layerRange = [layerMin, layerMax];
-        handleLayerStartStopChange(layerRange);
+        data = TransformData(data, layer);
+        handleLayerStartStopChange(DataLayerRange(data));;
     }
 
     const combinedData = data && geomData &&
@@ -138,4 +114,27 @@ export async function LoadDataAggregateFunction(
         .catch((error) => console.error('Error:', error));
 
     return null;
+}
+
+function TransformData(data: number[], layer: string): number[] {
+
+    data = data.map((val: number) => typeof val === "string" && val === "NA" ? NaN : Number (val));
+    if (layer === "bike_index" || layer === "natural") {
+        data.forEach((x: number, index: number) => {
+            data[index] = 1 - x;
+        })
+    } else if (layer === "school_dist" || layer === "popdens" || layer === "intervals") {
+        data.forEach((x: number, index: number) => {
+            data[index] = Math.log10(x);
+        })
+    }
+
+    return data;
+}
+
+function DataLayerRange(data: number[]): number[] {
+
+    const layerMin = Math.min(...data.filter(Number.isFinite));
+    const layerMax = Math.max(...data.filter(Number.isFinite));
+    return [layerMin, layerMax];
 }
