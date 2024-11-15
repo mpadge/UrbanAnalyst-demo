@@ -25,7 +25,7 @@ export default function MapLayerTransport (props: MapProps) {
             data: props.data,
             stroked: true,
             getPosition: (d: any) => d.position,
-            getRadius: 50, // implicit 'radiusScale: 1'
+            getRadius: 150, // implicit 'radiusScale: 1'
             getLineWidth: 0,
             getFillColor: d => {
                 var layerval = Math.max (props.layerRange[0], Math.min (props.layerRange[1], d[this_layer]));
