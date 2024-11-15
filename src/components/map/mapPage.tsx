@@ -234,6 +234,7 @@ export default function MapPage() {
     const [dataLoadingComplete, setDataLoadingComplete] = useState<boolean>(false);
 
     const mapPathBase = '/data/muenster/'
+    // ------ load geometries, so they're only re-loaded when dataSource changes:
     useEffect(() => {
         if (dataSource === 'detailed') {
             LoadDataDetailedGeom(mapPathBase, setLoadedDataGeom);
@@ -242,6 +243,7 @@ export default function MapPage() {
         }
     }, [mapPathBase, dataSource]);
 
+    // ------ load data layers, including re-scaling and calculating range limits:
     useEffect(() => {
         const sources = ["aggregate", "transport", "detailed"];
         if (sources.indexOf(dataSource) !== -1) {
