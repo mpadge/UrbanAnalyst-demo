@@ -101,25 +101,15 @@ export async function LoadDataTransportFunction(
         handleLayerStartStopChange(layerRange);
     }
 
-    const combinedData = geomData && data
-        ? Array.from({ length: Math.max(geomData.x.length, data.length) }, (_, i) =>
-            [geomData.x[i] || null, geomData.y[i] || null, data[i] || null])
-        : [];
+    const combinedData = data.map((_, index) => ({
+            [layer]: data[index],
+            position: [geomData.x[index], geomData.y[index]]
+    }));
 
-    const util = require('util');
-    console.log("-----typeof combinedData = " + typeof(combinedData));
-    console.log("-----str combinedData = " + util.inspect(combinedData, {depth: null}));
-    console.log("-----combinedData = " + combinedData);
+    // const util = require('util');
+    // console.log("-----str combinedData = " + util.inspect(combinedData, {depth: null}));
 
-    const namedData = combinedData.map(([value]) => ({
-        [`${layer}`]: value[0],
-        ["x"]: value[1],
-        ["y"]: value[2]
-    }))
-
-    console.log("-----namedData = " + util.inspect(namedData, {depth: null}));
-
-    setLoadedData(namedData);
+    setLoadedData(combinedData);
 
     return null;
 
