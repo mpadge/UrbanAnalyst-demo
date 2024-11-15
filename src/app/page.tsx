@@ -34,7 +34,6 @@ export const viewport: Viewport = {
 export default function Home() {
 
     const buttonTxt = [
-        "summarise",
         "map",
         "about"
     ]

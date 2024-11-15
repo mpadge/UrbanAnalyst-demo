@@ -22,7 +22,6 @@ export default function Home() {
 
     const buttonTxt = [
         "home",
-        "summarise",
         "about"
     ]
 
