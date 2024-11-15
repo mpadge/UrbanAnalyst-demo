@@ -51,18 +51,49 @@ export async function LoadDataDetailedGeom(
 export async function LoadDataTransport(
     mapPathBase: string,
     setLoadedData: (data: any) => void,
+    mapDataGeom: any,
     numLayers: string,
     layer: string,
     handleLayerStartStopChange: (layerRange: number[]) => void
 ) {
 
+    const mapPathData = mapPathBase + 'data-transport-' + layer + '.json';
+    var data = await fetch(mapPathData)
+        .then(response => response.json())
+        .catch((error) => console.error('Error fetching transport data column:', error));
+
+    const util = require('util');
+
+    if (data) {
+        data = TransformData(data, layer);
+        handleLayerStartStopChange(DataLayerRange(data));;
+    }
+
+    const combinedData = data && mapDataGeom &&
+        data.map((_: any, index: number) => ({
+            [layer]: data[index],
+            position: [mapDataGeom.x[index], mapDataGeom.y[index]]
+        }));
+
+    // const util = require('util');
+    // console.log("-----str combinedData = " + util.inspect(combinedData, {depth: null}));
+
+    if (combinedData) {
+        setLoadedData(combinedData);
+    }
+
+    return null;
+
+}
+
+export async function LoadDataTransportGeom(
+    mapPathBase: string,
+    setLoadedDataGeom: (data: any) => void,
+) {
     const mapPathGeom = mapPathBase + 'data-transport-geom.json';
     const geomDataFlat = await fetch(mapPathGeom)
         .then(response => response.json() as unknown as number[][])
-        .catch((error) => console.error('Error fetching transport data geometry:', error));
-
-    // const util = require('util');
-    // console.log("-----geomDataFlat = " + util.inspect(geomDataFlat, {depth: null}));
+        .catch((error) => console.error('Error fetching full data geometry:', error));
 
     // geomData is then read as single, flattened array, from which columns
     // need to be re-constructed:
@@ -76,33 +107,11 @@ export async function LoadDataTransport(
             geomData.y.push(item[1]);
         })
     }
-
-    const mapPathData = mapPathBase + 'data-transport-' + layer + '.json';
-    var data = await fetch(mapPathData)
-        .then(response => response.json())
-        .catch((error) => console.error('Error fetching transport data column:', error));
-
-    if (data) {
-        data = TransformData(data, layer);
-        handleLayerStartStopChange(DataLayerRange(data));;
-    }
-
-    const combinedData = data && geomData &&
-        data.map((_: any, index: number) => ({
-            [layer]: data[index],
-            position: [geomData.x[index], geomData.y[index]]
-        }));
-
-    // const util = require('util');
-    // console.log("-----str combinedData = " + util.inspect(combinedData, {depth: null}));
-
-    if (combinedData) {
-        setLoadedData(combinedData);
-    }
+    setLoadedDataGeom(geomData);
 
     return null;
-
 }
+
 
 export async function LoadDataAggregate(
     mapPathBase: string,

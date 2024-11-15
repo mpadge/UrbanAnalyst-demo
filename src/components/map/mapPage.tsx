@@ -13,7 +13,8 @@ import {
     LoadDataAggregate,
     LoadDataDetailed,
     LoadDataDetailedGeom,
-    LoadDataTransport
+    LoadDataTransport,
+    LoadDataTransportGeom
 } from '@/components/map/loadData';
 import useWindowSize from '@/components/windowSize';
 import { getTourConfig } from '@/components/map/tour/tourConfig';
@@ -234,8 +235,12 @@ export default function MapPage() {
 
     const mapPathBase = '/data/muenster/'
     useEffect(() => {
-        LoadDataDetailedGeom(mapPathBase, setLoadedDataGeom);
-    }, [mapPathBase]);
+        if (dataSource === 'detailed') {
+            LoadDataDetailedGeom(mapPathBase, setLoadedDataGeom);
+        } else if (dataSource === 'transport') {
+            LoadDataTransportGeom(mapPathBase, setLoadedDataGeom);
+        }
+    }, [mapPathBase, dataSource]);
 
     useEffect(() => {
         const sources = ["aggregate", "transport", "detailed"];
@@ -245,7 +250,7 @@ export default function MapPage() {
             if (dataSource === 'detailed') {
                 LoadDataDetailed(mapPathBase, setLoadedData, mapDataGeom, numLayers, layer, handleLayerStartStopChange);
             } else if (dataSource == 'transport') {
-                LoadDataTransport(mapPathBase, setLoadedData, numLayers, layer, handleLayerStartStopChange);
+                LoadDataTransport(mapPathBase, setLoadedData, mapDataGeom, numLayers, layer, handleLayerStartStopChange);
             } else {
                 LoadDataAggregate(mapPathBase, setLoadedData, numLayers, layer, handleLayerStartStopChange);
             }
