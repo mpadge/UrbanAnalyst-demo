@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { DeckGL } from "@deck.gl/react/typed";
 import { FlyToInterpolator } from "@deck.gl/core/typed";
 import { Map } from "react-map-gl";
@@ -9,7 +9,12 @@ import Control from '@/components/map/control';
 import Legend from '@/components/map/legend';
 import UTAMap from '@/components/map/map';
 import Tour from '@/components/map/tour/tour';
-import { LoadDataAggregate, LoadDataDetailed, LoadDataTransport} from '@/components/map/loadData';
+import {
+    LoadDataAggregate,
+    LoadDataDetailed,
+    LoadDataDetailedGeom,
+    LoadDataTransport
+} from '@/components/map/loadData';
 import useWindowSize from '@/components/windowSize';
 import { getTourConfig } from '@/components/map/tour/tourConfig';
 import tourStyles from '@/styles/tour.module.css';
@@ -93,6 +98,7 @@ export default function MapPage() {
     const [layerRange, setLayerRange] = useState<number[]>([0, 1]);
 
     const [mapData, setLoadedData] = useState<any | null>(null);
+    const [mapDataGeom, setLoadedDataGeom] = useState<any | null>(null);
 
     useEffect(() => {
         var layerLocal = "social_index";
@@ -222,27 +228,37 @@ export default function MapPage() {
         setLayerStartStop(layerRange);
     }
 
+    // -------- START DATA LOADING EFFECTS -------
+
     const [dataLoadingComplete, setDataLoadingComplete] = useState<boolean>(false);
+
+    const mapPathBase = '/data/muenster/'
+    useEffect(() => {
+        LoadDataDetailedGeom(mapPathBase, setLoadedDataGeom);
+    }, [mapPathBase]);
+
     useEffect(() => {
         const sources = ["aggregate", "transport", "detailed"];
         if (sources.indexOf(dataSource) !== -1) {
             setLoadedData(null);
             setDataLoadingComplete(false);
             if (dataSource === 'detailed') {
-                LoadDataDetailed(setLoadedData, numLayers, layer, handleLayerStartStopChange);
+                LoadDataDetailed(setLoadedData, mapDataGeom, numLayers, layer, handleLayerStartStopChange);
             } else if (dataSource == 'transport') {
                 LoadDataTransport(setLoadedData, numLayers, layer, handleLayerStartStopChange);
             } else {
                 LoadDataAggregate(setLoadedData, numLayers, layer, handleLayerStartStopChange);
             }
         }
-    }, [dataSource, setLoadedData, setDataLoadingComplete, numLayers, layer]);
+    }, [dataSource, setLoadedData, mapDataGeom, setDataLoadingComplete, numLayers, layer]);
 
     useEffect(() => {
         if (mapData) {
             setDataLoadingComplete(true);
         }
     }, [mapData, setDataLoadingComplete]);
+
+    // -------- END DATA LOADING EFFECTS -------
 
     // ----- TOUR start-----
     const [tourClass, setTourClass] = useState(tourStyles.tourhelperLight);

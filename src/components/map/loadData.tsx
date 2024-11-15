@@ -1,16 +1,12 @@
 export async function LoadDataDetailed(
     setLoadedData: (data: any) => void,
+    mapDataGeom: any,
     numLayers: string,
     layer: string,
     handleLayerStartStopChange: (layerRange: number[]) => void
 ) {
 
     const mapPathBase = '/data/muenster/'
-
-    const mapPathGeom = mapPathBase + 'data-full-geom.json';
-    const geomData = await fetch(mapPathGeom)
-        .then(response => response.json())
-        .catch((error) => console.error('Error fetching full data geometry:', error));
 
     const mapPathData = mapPathBase + 'data-full-' + layer + '.json';
     var data = await fetch(mapPathData)
@@ -22,9 +18,9 @@ export async function LoadDataDetailed(
         handleLayerStartStopChange(DataLayerRange(data));;
     }
 
-    const combinedData = geomData && data
-        ? Array.from({ length: Math.max(geomData.length, data.length) }, (_, i) =>
-            [geomData[i] || null, data[i] || null])
+    const combinedData = mapDataGeom && data
+        ? Array.from({ length: Math.max(mapDataGeom.length, data.length) }, (_, i) =>
+            [mapDataGeom[i] || null, data[i] || null])
         : [];
 
     const namedData = combinedData.map(([geomValue, dataValue]) => ({
@@ -37,6 +33,20 @@ export async function LoadDataDetailed(
 
     return null;
 
+}
+
+export async function LoadDataDetailedGeom(
+    mapPathBase: string,
+    setLoadedDataGeom: (data: any) => void,
+) {
+    const mapPathGeom = mapPathBase + 'data-full-geom.json';
+    const geomData = await fetch(mapPathGeom)
+        .then(response => response.json())
+        .catch((error) => console.error('Error fetching full data geometry:', error));
+
+    setLoadedDataGeom(geomData);
+
+    return null;
 }
 
 export async function LoadDataTransport(
