@@ -73,7 +73,7 @@ export default function Home() {
                                     Map <span>&#8628;</span>
                                 </h2>
                                 <p className={styles.cardText}>
-                                    View interactive maps of all cities analysed to date.
+                                    View interactive map with demonstration of full-resolution data.
                                 </p>
                             </div>
                             <div className={styles.cardImage}>
