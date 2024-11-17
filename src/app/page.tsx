@@ -52,9 +52,12 @@ export default function Home() {
                 <div className={styles.centerNormal}>
                     <p className="text-center">
                         A demonstration of full-resolution data underlying
-                        the Urban Analyst platform for interactive
-                        visualisation and comparison of cities.
-                        The demonstration can be seen on the &nbsp;
+                        the &nbsp;
+                        <Link href="https://urbananalyst.city" rel="noopener noreferrer">
+                            Urban Analyst platform
+                        </Link>
+                        &nbsp; for interactive visualisation and comparison of
+                        cities.  The demonstration can be seen on the &nbsp;
                         <Link href="/map" rel="noopener noreferrer">
                             Map page.
                         </Link>
