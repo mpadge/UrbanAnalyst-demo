@@ -54,7 +54,7 @@ export default function Home() {
                         A demonstration of full-resolution data underlying
                         the Urban Analyst platform for interactive
                         visualisation and comparison of cities.
-                        The demonstration can be seen on the 
+                        The demonstration can be seen on the &nbsp;
                         <Link href="/map" rel="noopener noreferrer">
                             Map page.
                         </Link>
