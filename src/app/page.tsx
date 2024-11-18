@@ -35,7 +35,7 @@ export default function Home() {
 
     const buttonTxt = [
         "map",
-        "main page",
+        "main site",
         "about"
     ]
 
@@ -53,12 +53,15 @@ export default function Home() {
                 <div className={styles.centerNormal}>
                     <p className="text-center">
                         A demonstration of full-resolution data underlying
-                        the &nbsp;
+                        the&nbsp;
                         <Link href="https://urbananalyst.city" rel="noopener noreferrer">
                             Urban Analyst platform
                         </Link>
-                        &nbsp; for interactive visualisation and comparison of
-                        cities.  The demonstration can be seen on the &nbsp;
+                        &nbsp;for interactive visualisation and comparison of
+                        cities.  The main site shows aggregated results for a
+                        number of cities. This full-resolution demonstration
+                        site shows data for only one demonstration city, which
+                        be seen on the&nbsp;
                         <Link href="/map" rel="noopener noreferrer">
                             Map page.
                         </Link>

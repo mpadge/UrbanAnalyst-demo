@@ -31,7 +31,7 @@ export default function Home() {
 
                 <div className={styles.centerBig}>
                     <p className="text-center">
-                        Urban Analyst
+                        Urban Analyst at Full Resolution
                     </p>
                 </div>
 
@@ -43,98 +43,37 @@ export default function Home() {
 
                 <div className={styles.centerNormal}>
                     <p className="text-center">
-                        Urban Analyst is a platform for interactive visualisation of
-                        the properties of cities, including transport systems and
-                        socio-demographic conditions.  The platform offers
+                        This is a demonstration of the full-resolution data
+                        underlying the main&nbsp;
+                        <Link href="https://urbananalyst.city" rel="noopener noreferrer">
+                            Urban Analyst platform
+                        </Link>
+                        &nbsp;for interactive visualisation of the properties of
+                        cities. The main site shows aggregated results for a
+                        number of cities. This full-resolution demonstration
+                        site shows data for only one demonstration city, and
+                        contains only a&nbsp;
+                        <Link href="/map" rel="noopener noreferrer">
+                            Map page.
+                        </Link>
+                        &nbsp; The main site shows only aggregate data; this
+                        demonstration site offers two other views:
                     </p>
                 </div>
                 <div className={styles.centerNormal}>
                     <ol>
                         <li>
-                            a &ldquo;Summarise&rdquo; page that provides brief
-                            descriptions of the properties of any chosen city.
+                            &ldquo;Transport&rdquo; showing values of chosen
+                            variables measured at all public tranport stops;
+                            and
                         </li>
                         <li>
-                            a &ldquo;Compare&rdquo; view that compares the
-                            properties of different cities in terms of each variable
-                            measured by Urban Analyst.
-                        </li>
-                        <li>
-                            a &ldquo;Map&rdquo; view, to enable various properties
-                            of individual cities to be visualised as interactive
-                            maps, and
+                            &ldquo;Detailed&rdquo; showing the full-resolution
+                            data on every street segment throughout the city.
                         </li>
                     </ol>
                 </div>
-                <div className={styles.centerNormal}>
-                    <p className="text-center"> 
-                        Full details are provided&nbsp;
-                        <a
-                            href="https://docs.urbananalyst.city"
-                            rel="noopener noreferrer"
-                        >
-                            in the documentation</a>.
-                    </p>
-                </div>
 
-                <div className={styles.leftMed}>
-                    <p className="text-center">
-                        Who made this?
-                    </p>
-                </div>
-
-                <div className={styles.centerNormal}>
-                    <p className="text-center">
-                        <a
-                            href="https://github.com/mpadge"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Mark Padgham
-                        </a>
-                        , along with all of the other contributors to the
-                        <a
-                            href="https://github.com/UrbanAnalyst"
-                            rel="noopener noreferrer"
-                        >
-                            &nbsp;open-source software which drives it.
-                        </a>.
-                    </p>
-                </div>
-
-                <div className={styles.leftMed}>
-                    <p className="text-center">
-                        Who funds this?
-                    </p>
-                </div>
-
-                <div className={styles.centerNormal}>
-                    <p className="text-center">
-                        Previous funding has been provided by
-                        the German Government&#39;s &#8202;
-                        <a
-                            href="https://prototypefund.de"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            prototypefund
-                        </a>
-                        , as part of their &#8202;
-                        <a
-                            href="https://prototypefund.de/project/urban-transport-analyst-uta/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >twelfth </a>
-                        and &#8202;
-                        <a
-                            href="https://prototypefund.de/project/urban-analyst/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            fourteenth funding rounds
-                        </a>.
-                    </p>
-                </div>
             </main>
         </>
     )
