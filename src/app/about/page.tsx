@@ -20,7 +20,7 @@ export default function Home() {
 
     const buttonTxt = [
         "home",
-        "main page",
+        "main site",
         "map",
     ]
 

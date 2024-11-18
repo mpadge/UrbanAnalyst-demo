@@ -62,7 +62,7 @@ function getPreferredTheme() {
 function getHref(s: string) {
     if (s === "home") {
         return "/";
-    } else if (s === "main page") {
+    } else if (s === "main site") {
         return "https://urbananalyst.city";
     } else {
         return "/" + s;
