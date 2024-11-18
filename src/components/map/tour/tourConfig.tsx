@@ -37,9 +37,42 @@ export const getTourConfig = (width: number, height: number) => [
             <div>
                 <h2>Maps</h2>
                 <br />
-                This page shows interactive maps for a chosen city, and for
-                values of a chosen variable or <q>layer</q>. Low values (yellow
-                colors) are generally better than higher values (blue colors).
+                This page shows interactive maps for one demonstration city.
+                Different to the main site, which shows only aggregated data,
+                this page has three different <i>Data Source</i> options.
+            </div>
+        ),
+        style: {
+            backgroundColor: tourPanelBackgroundColour,
+            borderRadius: width > 700 ? tourPanelBorderRadiusWide : tourPanelBorderRadiusNarrow,
+            left: posControlsX(width, "nav"),
+            width: maxWidth(width),
+        }
+    },
+    {
+        selector: '[data-tut="reactour__maps_page"]',
+        content: (
+            <div>
+                <h2>Maps</h2>
+                <br />
+                <ul>
+                    <li>
+                        <i>Aggregate</i> data are the same as on the main site,
+                        plotted as polygons;
+                    </li>
+                    <li>
+                        <i>Transport</i> data show point values at every
+                        transport stop; and
+                    </li>
+                    <li>
+                        <i>Detailed</i> data values measured along every single
+                        street segment, and plotted as lines.
+                    </li>
+                </ul>
+                <br />
+                Note that relationships between variables can only be measured
+                at the aggregate scale, and so the latter two offer views of
+                single variables only
             </div>
         ),
         style: {
@@ -66,10 +99,11 @@ export const getTourConfig = (width: number, height: number) => [
             <div>
                 <h2>Controls</h2>
                 <br />
-                The control panel also includes a <q>Colour Limits</q> slider
-                which can be used to restrict the range of data fitted in to the
-                colour scale. This can be used to focus the full colour range in
-                to particular ranges or areas of interest.
+                The control panel also includes a <q><i>Colour
+                Limits</i></q>&nbsp;slider which can be used to restrict the
+                range of data fitted in to the colour scale. This can be used
+                to focus the full colour range in to particular ranges or areas
+                of interest.
             </div>
         ),
         style: {

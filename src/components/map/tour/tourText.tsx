@@ -1,32 +1,25 @@
 
 export function controlBoxText (wide = true) {
     const line1 = wide ?
-        `This is the "control center" to choose cities and data layers.` :
-        `On the left side is the "control center" to choose cities and data layers.`;
+        `This is the "control center" to choose data sources and layers.` :
+        `On the left side is the "control center" to choose data sources and layers.`;
 
     return (
         <div>
             <h2>Controls</h2>
             <br />
             {line1}
-            &nbsp;The <q>Layer Controls</q> select what is shown on the map.
+            &nbsp;<q><i>Data Source</i></q> allows the selection of aggregate
+            (polygons), transport (points), or detailed (lines) data. The
+            <q><i>Layer Controls</i></q> select what is shown on the map.
             Details on each layer selection can be seen by clicking on the
-            <q>Explain layer</q> button.
+            <q><i>Explain layer</i></q> button.
             <br />
             <br />
-            Layers can be viewed in <q>Single</q> or <q>Paired</q>
-            mode. Single mode displays values for the single selected layer.
-            Paired mode displays the strength of relationship between two
-            chosen layers.  For example, selecting <q>Social</q> and
-            <q>Bicycle Index</q> will display how strongly social
-            disavantage is related to bicycle infrastrcuture. Details of
-            each selection can always be seen by clicking the <q>Explain
-                layer</q> button.
-            <br />
-            <br />
-            Lower values are always better for single layers; interpreations
-            of lower vs. higher values for paired layers are always given in
-            the <q>Explain layer</q> text.
+            For single layers, lower values (yellow colours) are always better
+            than high values (blue colours); interpreations of lower vs. higher
+            values for paired layers are always given in the <q>Explain
+            layer</q> text.
         </div>
     )
 }
@@ -47,8 +40,8 @@ export function legendText(wide = true) {
 
 export function navText(goTo: (stepIndex: number) => void, wide = true) {
     const line1 = wide ?
-        `Finally, these menu items navigate to other Urban Analyst pages.` :
-        `Finally, the menu items navigate to other Urban Analyst pages.`;
+        `Finally, these menu items navigate to other pages of this full-resolution demonstration site, as well as the main Urban Analyst site.` :
+        `Finally, the menu items navigate to other pages of this full-resolution demonstration site, as well as the main Urban Analyst site.`;
 
     return (
         <div>
