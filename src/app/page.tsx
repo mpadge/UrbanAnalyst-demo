@@ -98,43 +98,40 @@ export default function Home() {
 
                 <div className={styles.centerBig}>
                     <p className="text-center">
-                        How does it work?
-                    </p>
-                </div>
-
-                <div className={styles.centerNormal}>
-
-                    <p className="text-center">
-                        Results for each city involve billions of routing
-                        calculations through street networks and public transport
-                        systems.  These are calculated using Urban Analyst&apos;s
-                        own open-source software described in
-                        <a className = {styles.textLink}
-                            href="https://docs.urbananalyst.city" >&nbsp;the
-                            documentation pages </a>. These enormous numbers of
-                        calculations enable Urban Analyst to provide uniquely
-                        powerful insights into how people move throughout cities.
-                    </p>
-                </div>
-
-                <div className={styles.centerBig}>
-                    <p className="text-center">
-                        How can cities be added?
+                        What's different here?
                     </p>
                 </div>
 
                 <div className={styles.centerNormal}>
                     <p className="text-center">
-                        Please open an issue on
-                        <a className = {styles.textLink}
-                            href="https://github.com/mpadge/UrbanAnalyst/issues"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            &nbsp;the GitHub repository of this site
-                        </a>
-                        &nbsp;requesting the addition of a particular city.
+                        This is a demonstration of one city only, with the single&nbsp;
+                        <Link href="/map" rel="noopener noreferrer">
+                            Map page
+                        </Link>
+                        &nbsp;the an additional ability to select <i>Data Source</i> as:<br />
                     </p>
+                </div>
+                <div className={styles.centerLeft}>
+                    <ol>
+                        <li>
+                            <i>Aggregate</i>, as polygons, showing the same
+                            aggregated data as&nbsp;
+                            <Link href="/map" rel="noopener noreferrer">
+                                the main site
+                            </Link>
+                            .
+                        </li><br />
+                        <li>
+                            <i>Transport</i>, as points, showing one data point
+                            for every transport stop in the city; or
+                        </li><br />
+                        <li>
+                            <i>Detailed</i>, as lines, showing all underlying
+                            data in full resolution, with values for each
+                            variable plotted along every street segment
+                            throughout the city.
+                        </li><br />
+                    </ol>
                 </div>
 
             </main>
