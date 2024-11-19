@@ -133,6 +133,20 @@ export default function Home() {
                         </li><br />
                     </ol>
                 </div>
+                <div className={styles.centerNormal}>
+                    <p className="text-center">
+                        The <i>Transport</i> and <i>Detailed</i> views show the
+                        same individual data layers as on the main site.
+                        Extending to other data is straightforward, and these
+                        pages can be adapted to any needs. The <i>Transport</i>
+                        data, for example, can easily be extended to show
+                        proportions of trips taken with different modes, or the
+                        <i>Detailed</i> data can show, for example, numbers of
+                        points of interest within some fixed distance, or
+                        combinations of variables such as ratios of real estate
+                        prices (for U.S. data) to socio-economic status.
+                    </p>
+                </div>
 
             </main>
         </>
