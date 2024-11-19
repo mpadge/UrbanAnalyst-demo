@@ -98,7 +98,7 @@ export default function Home() {
 
                 <div className={styles.centerBig}>
                     <p className="text-center">
-                        What's different here?
+                        What&apos;s different here?
                     </p>
                 </div>
 
