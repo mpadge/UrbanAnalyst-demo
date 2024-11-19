@@ -104,31 +104,36 @@ export default function Home() {
 
                 <div className={styles.centerNormal}>
                     <p className="text-center">
-                        This is a demonstration of one city only, with the single&nbsp;
+                        In contrast to&nbsp;
+                        <Link href="/map" rel="noopener noreferrer">
+                            the main site
+                        </Link>
+                        , this is a demonstration of one city only, with the
+                        single&nbsp;
                         <Link href="/map" rel="noopener noreferrer">
                             Map page
                         </Link>
-                        &nbsp;the an additional ability to select <i>Data Source</i> as:<br />
+                        &nbsp;having an additional selection for <i>Data Source</i> as:<br />
                     </p>
                 </div>
                 <div className={styles.centerLeft}>
                     <ol>
                         <li>
-                            <i>Aggregate</i>, as polygons, showing the same
-                            aggregated data as&nbsp;
+                            <i>Aggregate</i>, plotted as polygons, showing the
+                            same aggregated data as&nbsp;
                             <Link href="/map" rel="noopener noreferrer">
                                 the main site
                             </Link>
                             .
                         </li><br />
                         <li>
-                            <i>Transport</i>, as points, showing one data point
-                            for every transport stop in the city; or
+                            <i>Transport</i>, plotted as points, showing one
+                            data point for every transport stop in the city; or
                         </li><br />
                         <li>
-                            <i>Detailed</i>, as lines, showing all underlying
-                            data in full resolution, with values for each
-                            variable plotted along every street segment
+                            <i>Detailed</i>, plotted as lines, showing all
+                            underlying data in full resolution, with values for
+                            each variable plotted along every street segment
                             throughout the city.
                         </li><br />
                     </ol>
@@ -136,16 +141,25 @@ export default function Home() {
                 <div className={styles.centerNormal}>
                     <p className="text-center">
                         The <i>Transport</i> and <i>Detailed</i> views show the
-                        same individual data layers as on the main site.
-                        Extending to other data is straightforward, and these
-                        pages can be adapted to any needs. The <i>Transport</i>
-                        data, for example, can easily be extended to show
-                        proportions of trips taken with different modes, or the
-                        <i>Detailed</i> data can show, for example, numbers of
-                        points of interest within some fixed distance, or
-                        combinations of variables such as ratios of real estate
-                        prices (for U.S. data) to socio-economic status.
+                        same individual and pairwise data layers as on the main
+                        site. Extending to other data is straightforward, and
+                        these pages can be adapted to any needs. Examples include:
                     </p>
+                </div>
+                <div className={styles.centerLeft}>
+                    <ol>
+                        <li>
+                            A <i>Transport</i> layer showing proportions of
+                            trips taken with different modes; or
+                        </li><br />
+                        <li>
+                            A <i>Detailed</i> layer showing numbers of points
+                            of interest within some fixed distance, or
+                            combinations of variables such as ratios of real
+                            estate prices (for U.S. data) to combined transport
+                            measures.
+                        </li>
+                    </ol>
                 </div>
 
             </main>
