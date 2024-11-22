@@ -104,7 +104,7 @@ export default function Home() {
                 <div className={styles.centerNormal}>
                     <p className="text-center">
                         In contrast to&nbsp;
-                        <Link href="/map" rel="noopener noreferrer">
+                        <Link href="https://urbananalyst.city" rel="noopener noreferrer">
                             the main site
                         </Link>
                         , this is a demonstration of one city only, with the
