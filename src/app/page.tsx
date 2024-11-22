@@ -138,30 +138,112 @@ export default function Home() {
                         </li><br />
                     </ol>
                 </div>
-                <div className={styles.centerNormal}>
+
+                <div className={styles.centerBig}>
                     <p className="text-center">
-                        The <i>Transport</i> and <i>Detailed</i> views show the
-                        same individual and pairwise data layers as on the main
-                        site. Extending to other data is straightforward, and
-                        these pages can be adapted to any needs. Examples include:
+                        What is this demo meant to do?
                     </p>
                 </div>
+
+                <div className={styles.centerNormal}>
+                    <p className="text-center">
+                        This part of the site is intended to demonstrate just
+                        some of the capabilities of the full-resolution data
+                        underlying <i>Urban Analyst</i>. These pages can be
+                        adapted to any needs, and extending to other data is
+                        straightforward. Examples include:
+                    </p>
+                </div>
+
                 <div className={styles.centerLeft}>
                     <ol>
                         <li>
                             A <i>Transport</i> layer showing proportions of
-                            trips taken with different modes; or
+                            trips taken with different modes;
                         </li><br />
                         <li>
                             A <i>Detailed</i> layer showing numbers of points
-                            of interest within some fixed distance, or
-                            combinations of variables such as ratios of real
-                            estate prices (for U.S. data) to combined transport
-                            measures.
+                            of interest within some fixed distance;
+                        </li><br />
+                        <li>
+                            Any desired combinations of variables such as
+                            ratios of real estate prices (for U.S. data) to
+                            combined transport measures.
+                        </li><br />
+                        <li>
+                            Typical per-capita exposure to vehicular emissions
+                            for all pedestrian or bicycle journeys.
+                        </li><br />
+                        <li>
+                            Additional data can easily be combined. For
+                            example, data on street shading would enable
+                            calculation of proportions of pedestrian journeys
+                            under shade. Dynamic scenarios can also be
+                            considered, in which route calculations vary
+                            throughout the day.
                         </li>
                     </ol>
                 </div>
 
+                <div className={styles.centerBig}>
+                    <p className="text-center">
+                        What else can Urban Analyst do?
+                    </p>
+                </div>
+
+                <div className={styles.centerNormal}>
+                    <h2>Track Urban Development</h2>
+                    <p className="text-center">
+                        Urban Analyst is the ideal platform for recording and
+                        analysing the ongoing development of cities. Both the
+                        standard metrics, and any additional custom metrics,
+                        can be recorded at regular time intervals, providing
+                        snapshots of a city as it develops and progresses.
+                    </p>
+                    <p className="text-center">
+                        A few months of data are sufficient to generate time
+                        series of all variables measured. This is enough to
+                        populate an additional page of interactive time-series
+                        data. This page functions just like the <i>Map</i> page
+                        for spatial data, yet filled with data-rich
+                        time-series, including the development of pair-wise
+                        relationships between all variables.
+                    </p>
+                </div>
+
+                <div className={styles.centerNormal}>
+                    <h2>Scenario Comparison and Evaluation</h2>
+                    <p className="text-center">
+                        Urban planning scenarios can easily be entered into
+                        Urban Analyst data, and the different scenarios
+                        compared in terms of their effects of all measured
+                        variables. Urban Analyst can also compare scenarios in
+                        terms of their effects of relationships between
+                        variables. In combination with the time-series analyses
+                        described above, scenarios can also be examined in
+                        their effects both in time and in space. Finally, the
+                        huge amount of data from other cities around the world
+                        enables developmental scenarios to be directly compared
+                        with equivalent, actual development of any and all
+                        other cities.
+                    </p>
+                </div>
+
+                <div className={styles.centerBig}>
+                    <p className="text-center">
+                        Interested?
+                    </p>
+                </div>
+
+                <div className={styles.centerNormal}>
+                    <p className="text-center">
+                        Write us an email at&nbsp;
+                        <Link href="mailto:info@urbananalyst.city" rel="noopener noreferrer">
+                            info@urbananalyst.city
+                        </Link>
+                        .
+                    </p>
+                </div>
             </main>
         </>
     )
