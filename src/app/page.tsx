@@ -140,7 +140,7 @@ export default function Home() {
 
                 <div className={styles.centerBig}>
                     <p className="text-center">
-                        What is this demo meant to do?
+                        What else can Urban Analyst do?
                     </p>
                 </div>
 
@@ -150,7 +150,10 @@ export default function Home() {
                         some of the capabilities of the full-resolution data
                         underlying <i>Urban Analyst</i>. These pages can be
                         adapted to any needs, and extending to other data is
-                        straightforward. Examples include:
+                        straightforward. Any city can have their own&nbsp;
+                        <i>&lt;mycity&gt;.urbananalyst.city</i>&nbsp;pages
+                        (either public or private), with any kinds of custom
+                        data or analyses. Examples include:
                     </p>
                 </div>
 
@@ -161,11 +164,11 @@ export default function Home() {
                             trips taken with different modes;
                         </li><br />
                         <li>
-                            A <i>Detailed</i> layer showing numbers of points
-                            of interest within some fixed distance;
+                            A <i>Detailed</i> layer showing average numbers of
+                            points of interest within some fixed distance;
                         </li><br />
                         <li>
-                            Any desired combinations of variables such as
+                            Any desired combinations of variables, such as
                             ratios of real estate prices (for U.S. data) to
                             combined transport measures.
                         </li><br />
@@ -174,7 +177,7 @@ export default function Home() {
                             for all pedestrian or bicycle journeys.
                         </li><br />
                         <li>
-                            Additional data can easily be combined. For
+                            Additional data can easily be integrated. For
                             example, data on street shading would enable
                             calculation of proportions of pedestrian journeys
                             under shade. Dynamic scenarios can also be
@@ -182,12 +185,6 @@ export default function Home() {
                             throughout the day.
                         </li>
                     </ol>
-                </div>
-
-                <div className={styles.centerBig}>
-                    <p className="text-center">
-                        What else can Urban Analyst do?
-                    </p>
                 </div>
 
                 <div className={styles.centerNormal}>
@@ -203,10 +200,10 @@ export default function Home() {
                         A few months of data are sufficient to generate time
                         series of all variables measured. This is enough to
                         populate an additional page of interactive time-series
-                        data. This page functions just like the <i>Map</i> page
-                        for spatial data, yet filled with data-rich
-                        time-series, including the development of pair-wise
-                        relationships between all variables.
+                        data. These time-series pages function just like the
+                        <i>Map</i> page for spatial data, yet filled with
+                        data-rich time-series, including the development of
+                        pair-wise relationships between all variables.
                     </p>
                 </div>
 
@@ -215,7 +212,7 @@ export default function Home() {
                     <p className="text-center">
                         Urban planning scenarios can easily be entered into
                         Urban Analyst data, and the different scenarios
-                        compared in terms of their effects of all measured
+                        compared in terms of their effects on all measured
                         variables. Urban Analyst can also compare scenarios in
                         terms of their effects of relationships between
                         variables. In combination with the time-series analyses
@@ -223,8 +220,8 @@ export default function Home() {
                         their effects both in time and in space. Finally, the
                         huge amount of data from other cities around the world
                         enables developmental scenarios to be directly compared
-                        with equivalent, actual development of any and all
-                        other cities.
+                        with equivalent, actual rates and directions of
+                        development of any and all other cities.
                     </p>
                 </div>
 
