@@ -153,18 +153,27 @@ export default function Home() {
                         straightforward. Any city can have their own&nbsp;
                         <i>&lt;mycity&gt;.urbananalyst.city</i>&nbsp;pages
                         (either public or private), with any kinds of custom
-                        data or analyses. Examples include:
+                        data or analyses. The following sections describe some
+                        of the ways custom, city-specific sites can be
+                        adapted.
+                    </p>
+
+                    <h2>Additional Data Layers</h2>
+                    <p className="text-center">
+                        Full-resolution sites can easily incorporate additional
+                        data layers beyond those displayed on the main site.
+                        Examples include:
                     </p>
                 </div>
 
                 <div className={styles.centerLeft}>
                     <ol>
                         <li>
-                            A <i>Transport</i> layer showing proportions of
+                            <i>Transport</i> layers showing proportions of
                             trips taken with different modes;
                         </li><br />
                         <li>
-                            A <i>Detailed</i> layer showing average numbers of
+                            <i>Detailed</i> layers showing average numbers of
                             points of interest within some fixed distance;
                         </li><br />
                         <li>
@@ -188,6 +197,11 @@ export default function Home() {
                 </div>
 
                 <div className={styles.centerNormal}>
+                    <p className="text-center">
+                        Beyond additional data layers, custom&nbsp;
+                        <i>&lt;mycity&gt;.urbananalyst.city</i>&nbsp;pages can
+                        also be extended to:
+                    </p>
                     <h2>Track Urban Development</h2>
                     <p className="text-center">
                         Urban Analyst is the ideal platform for recording and
@@ -208,7 +222,7 @@ export default function Home() {
                 </div>
 
                 <div className={styles.centerNormal}>
-                    <h2>Scenario Comparison and Evaluation</h2>
+                    <h2>Compare and Evaluate Scenarios</h2>
                     <p className="text-center">
                         Urban planning scenarios can easily be entered into
                         Urban Analyst data, and the different scenarios
