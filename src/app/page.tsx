@@ -35,8 +35,7 @@ export default function Home() {
 
     const buttonTxt = [
         "map",
-        "main site",
-        "about"
+        "main site"
     ]
 
     return (
