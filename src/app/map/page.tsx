@@ -22,8 +22,7 @@ export default function Home() {
 
     const buttonTxt = [
         "home",
-        "main site",
-        "about"
+        "main site"
     ]
 
     return (
