@@ -185,6 +185,65 @@ export default function Home() {
                     </ol>
                 </div>
 
+                <div className={styles.centerBig}>
+                    <p className="text-center">
+                        What else can Urban Analyst do?
+                    </p>
+                </div>
+
+                <div className={styles.centerNormal}>
+                    <h2>Track Urban Development</h2>
+                    <p className="text-center">
+                        Urban Analyst is the ideal platform for recording and
+                        analysing the ongoing development of cities. Both the
+                        standard metrics, and any additional custom metrics,
+                        can be recorded at regular time intervals, providing
+                        snapshots of a city as it develops and progresses.
+                    </p>
+                    <p className="text-center">
+                        A few months of data are sufficient to generate time
+                        series of all variables measured. This is enough to
+                        populate an additional page of interactive time-series
+                        data. This page functions just like the <i>Map</i> page
+                        for spatial data, yet filled with data-rich
+                        time-series, including the development of pair-wise
+                        relationships between all variables.
+                    </p>
+                </div>
+
+                <div className={styles.centerNormal}>
+                    <h2>Scenario Comparison and Evaluation</h2>
+                    <p className="text-center">
+                        Urban planning scenarios can easily be entered into
+                        Urban Analyst data, and the different scenarios
+                        compared in terms of their effects of all measured
+                        variables. Urban Analyst can also compare scenarios in
+                        terms of their effects of relationships between
+                        variables. In combination with the time-series analyses
+                        described above, scenarios can also be examined in
+                        their effects both in time and in space. Finally, the
+                        huge amount of data from other cities around the world
+                        enables developmental scenarios to be directly compared
+                        with equivalent, actual development of any and all
+                        other cities.
+                    </p>
+                </div>
+
+                <div className={styles.centerBig}>
+                    <p className="text-center">
+                        Interested?
+                    </p>
+                </div>
+
+                <div className={styles.centerNormal}>
+                    <p className="text-center">
+                        Write us an email at&nbsp;
+                        <Link href="mailto:info@urbananalyst.city" rel="noopener noreferrer">
+                            info@urbananalyst.city
+                        </Link>
+                        .
+                    </p>
+                </div>
             </main>
         </>
     )
