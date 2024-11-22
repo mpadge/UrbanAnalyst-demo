@@ -138,26 +138,49 @@ export default function Home() {
                         </li><br />
                     </ol>
                 </div>
-                <div className={styles.centerNormal}>
+
+                <div className={styles.centerBig}>
                     <p className="text-center">
-                        The <i>Transport</i> and <i>Detailed</i> views show the
-                        same individual and pairwise data layers as on the main
-                        site. Extending to other data is straightforward, and
-                        these pages can be adapted to any needs. Examples include:
+                        What is this demo meant to do?
                     </p>
                 </div>
+
+                <div className={styles.centerNormal}>
+                    <p className="text-center">
+                        This part of the site is intended to demonstrate just
+                        some of the capabilities of the full-resolution data
+                        underlying <i>Urban Analyst</i>. These pages can be
+                        adapted to any needs, and extending to other data is
+                        straightforward. Examples include:
+                    </p>
+                </div>
+
                 <div className={styles.centerLeft}>
                     <ol>
                         <li>
                             A <i>Transport</i> layer showing proportions of
-                            trips taken with different modes; or
+                            trips taken with different modes;
                         </li><br />
                         <li>
                             A <i>Detailed</i> layer showing numbers of points
-                            of interest within some fixed distance, or
-                            combinations of variables such as ratios of real
-                            estate prices (for U.S. data) to combined transport
-                            measures.
+                            of interest within some fixed distance;
+                        </li><br />
+                        <li>
+                            Any desired combinations of variables such as
+                            ratios of real estate prices (for U.S. data) to
+                            combined transport measures.
+                        </li><br />
+                        <li>
+                            Typical per-capita exposure to vehicular emissions
+                            for all pedestrian or bicycle journeys.
+                        </li><br />
+                        <li>
+                            Additional data can easily be combined. For
+                            example, data on street shading would enable
+                            calculation of proportions of pedestrian journeys
+                            under shade. Dynamic scenarios can also be
+                            considered, in which route calculations vary
+                            throughout the day.
                         </li>
                     </ol>
                 </div>
