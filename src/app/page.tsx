@@ -59,8 +59,8 @@ export default function Home() {
                         &nbsp;for interactive visualisation and comparison of
                         cities.  The main site shows aggregated results for a
                         number of cities. This full-resolution demonstration
-                        site shows data for only one demonstration city, which
-                        be seen on the&nbsp;
+                        site shows data for only one demonstration city,
+                        on the&nbsp;
                         <Link href="/map" rel="noopener noreferrer">
                             Map page.
                         </Link>
@@ -76,7 +76,8 @@ export default function Home() {
                                     Map <span>&#8628;</span>
                                 </h2>
                                 <p className={styles.cardText}>
-                                    View interactive map with demonstration of full-resolution data.
+                                    Demonstration of full-resolution data as
+                                    interactive maps.
                                 </p>
                             </div>
                             <div className={styles.cardImage}>
@@ -103,13 +104,10 @@ export default function Home() {
 
                 <div className={styles.centerNormal}>
                     <p className="text-center">
-                        In contrast to&nbsp;
-                        <Link href="https://urbananalyst.city" rel="noopener noreferrer">
-                            the main site
-                        </Link>
-                        , this is a demonstration of one city only, with the
-                        single&nbsp;
-                        <Link href="/map" rel="noopener noreferrer">
+                        This demonstration site shows data for one city only,
+                        with the single&nbsp;
+                        <Link href="/map"
+                            rel="noopener noreferrer">
                             Map page
                         </Link>
                         &nbsp;having an additional selection for <i>Data Source</i> as:<br />
