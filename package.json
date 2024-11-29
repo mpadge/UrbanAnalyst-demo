@@ -23,10 +23,10 @@
     "deck.gl": "^8.9.30",
     "mapbox-gl": "^3.1.2",
     "next": "^14.2.12",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-map-gl": "^7.1.7",
-    "react-select": "^5.8.0",
+    "react-select": "^5.8.3",
     "reactour": "^1.19.2",
     "sharp": "^0.33.2"
   },
@@ -36,10 +36,10 @@
     "@types/react": "^18.2.58",
     "@types/react-dom": "^18.2.19",
     "autoprefixer": "^10",
-    "eslint": "^8",
-    "eslint-config-next": "^14.1.0",
+    "eslint": "^9.15.0",
+    "eslint-config-next": "^15.0.3",
     "postcss": "^8",
-    "typescript": "^5"
+    "typescript": "^5.7.2"
   },
   "overrides": {
     "react": "$react"
