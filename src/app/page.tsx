@@ -148,8 +148,8 @@ export default function Home() {
                         some of the capabilities of the full-resolution data
                         underlying <i>Urban Analyst</i>. These pages can be
                         adapted to any needs, and extending to other data is
-                        straightforward. Any city can have their own&nbsp;
-                        <i>&lt;mycity&gt;.urbananalyst.city</i>&nbsp;pages
+                        straightforward. Any city can have their own &nbsp;
+                        <i>&lt;mycity&gt;.urbananalyst.city</i> &nbsp; pages
                         (either public or private), with any kinds of custom
                         data or analyses. The following sections describe some
                         of the ways custom, city-specific sites can be
@@ -196,8 +196,8 @@ export default function Home() {
 
                 <div className={styles.centerNormal}>
                     <p className="text-center">
-                        Beyond additional data layers, custom&nbsp;
-                        <i>&lt;mycity&gt;.urbananalyst.city</i>&nbsp;pages can
+                        Beyond additional data layers, custom &nbsp;
+                        <i>&lt;mycity&gt;.urbananalyst.city</i>&nbsp; pages can
                         also be extended to:
                     </p>
                     <h2>Track Urban Development</h2>
@@ -212,8 +212,8 @@ export default function Home() {
                         A few months of data are sufficient to generate time
                         series of all variables measured. This is enough to
                         populate an additional page of interactive time-series
-                        data. These time-series pages function just like the
-                        <i>Map</i> page for spatial data, yet filled with
+                        data. These time-series pages function just like the&nbsp;
+                        <i>Map</i>&nbsp; page for spatial data, yet filled with
                         data-rich time-series, including the development of
                         pair-wise relationships between all variables.
                     </p>
