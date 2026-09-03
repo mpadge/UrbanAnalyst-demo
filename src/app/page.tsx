@@ -245,11 +245,11 @@ export default function Home() {
 
                 <div className={styles.centerNormal}>
                     <p className="text-center">
-                        Write us an email at&nbsp;
-                        <Link href="mailto:info@urbananalyst.city" rel="noopener noreferrer">
-                            info@urbananalyst.city
+                        Visit the&nbsp;
+                        <Link href="https://urbananalyst.city/services" rel="noopener noreferrer">
+                            Urban Analyst services page
                         </Link>
-                        .
+                        &nbsp;to get in touch.
                     </p>
                 </div>
             </main>
