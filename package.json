@@ -7,9 +7,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint . --no-error-on-unmatched-pattern",
     "docs": "typedoc --entryPointStrategy expand src/",
-    "docs-open": "xdg-open docs/index.html &"
+    "docs-open": "xdg-open docs/index.html &",
+    "postinstall": "node tools/patch-eslint-react.js"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -35,9 +36,10 @@
     "@types/node": "^26.4.1",
     "@types/react": "^18.2.58",
     "@types/react-dom": "^18.2.19",
+    "@typescript-eslint/parser": "^8.69.0",
     "autoprefixer": "^10",
-    "eslint": "^9.15.0",
-    "eslint-config-next": "^15.0.3",
+    "eslint": "^10.9.1",
+    "eslint-config-next": "^16.3.4",
     "postcss": "^8.4.49",
     "typescript": "^6.0.3"
   },
